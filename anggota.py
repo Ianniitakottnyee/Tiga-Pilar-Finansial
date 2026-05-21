@@ -2,6 +2,27 @@ import pengelolaan
 
 users = []
 
+class anggata:
+    def __init__(self, nama, id):
+        self.nama = nama
+        self.id = id
+
+    def tambahAnggota(self, nama, id):
+        return {
+            "nama": self.nama,
+            "id": self.id
+        }
+    
+    def inputAnggata(self):
+        angka = 0
+        angka += 1
+        anggota = "nama" + str(angka)
+
+        [{"nama": "A", "id": 1}, {"nama": "b", "id": 2}]
+
+a = anggata.tambahAnggota("angga", 2)
+
+
 def Add_Users():
     user = {}
     Show_Users()
