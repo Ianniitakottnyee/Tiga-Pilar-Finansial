@@ -1,3 +1,5 @@
 import pengelolaan
+import perhitungan
+import anggota
 
-x = pengelolaan.Open()
+perhitungan.pembagianRata(peserta=["Ain", "Ian"], pembayar= "Ain")

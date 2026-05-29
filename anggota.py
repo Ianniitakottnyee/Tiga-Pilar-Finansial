@@ -1,26 +1,38 @@
 import pengelolaan
 
-users = []
 
-class anggata:
-    def __init__(self, nama, id):
-        self.nama = nama
-        self.id = id
+def tambahkanAnggata():
+    data = pengelolaan.akses()
+    if data[0] == []:
+        id = 0
+    else: 
+        id = data[0][-1]["id"]
+    print("Tambahkan Anggota Baru: ")
+    print("Ketik '/' untuk keluar.")
+    no = 1
+    while True:
+        tambah = True
+        nama = input(f"{no}. ").title()
+        if nama == "":
+            print("Nama tidak valid")
+            continue
+        elif nama == "/":
+            break
+        for anggota in data[0]:
+            if anggota["nama"] == nama:
+                print("Anggota Sudah Pernah Ditambahkan")
+                tambah = False
+                break
+        if tambah == True:
+            id += 1
+            no += 1
+            anggota = {"nama": nama, "id": id}
+            data[0].append(anggota)
+    pengelolaan.simpan(anggota= data[0])
+    print("Anggota Ditambahkan.")
 
-    def tambahAnggota(self, nama, id):
-        return {
-            "nama": self.nama,
-            "id": self.id
-        }
-    
-    def inputAnggata(self):
-        angka = 0
-        angka += 1
-        anggota = "nama" + str(angka)
 
-        [{"nama": "A", "id": 1}, {"nama": "b", "id": 2}]
 
-a = anggata.tambahAnggota("angga", 2)
 
 
 def Add_Users():

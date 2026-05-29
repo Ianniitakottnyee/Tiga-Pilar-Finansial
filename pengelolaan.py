@@ -1,8 +1,8 @@
-import Pencatatan
+import pencatatan
 import json
 
 
-def Save(simpan):
+def unggah(simpan):
     with open("data.json", "w") as f:
         json.dump(simpan, f)
 
@@ -16,27 +16,33 @@ def buka():
 def akses():
     data = buka()
     try:
-        users = data["users"]
-    except KeyError: users = []
+        anggota = data["anggota"]
+    except KeyError: anggota = []
     try:
-        riwayat = data["riwayat"]
-    except KeyError: riwayat = []
+        transaksi = data["transaksi"]
+    except KeyError: transaksi = []
     try:
         hutang = data["hutang"]
     except KeyError: hutang = []
     try:
-        riwhutang = data["rh"]
-    except KeyError: riwhutang = []
-    return [users, riwayat, hutang, riwhutang]
+        perhitungan = data["perhitungan"]
+    except KeyError: perhitungan = []
+    return [anggota, transaksi, hutang, perhitungan]
 
-def clearrh():
-    p = akses()
-    if p[3] == []:
-        print("Riwayat kosong!")
-    else:
-        simpan = {"users": p[0], "riwayat": p[1], "hutang": p[2], "rh": []}
-        Save(simpan)
-        print("Riwayat perhitungan berhasil dihapus!")
+def simpan(anggota= None, transaksi= None, hutang= None, perhitungan= None):
+    data = akses()
+    if anggota is None:
+        anggota = data[0]
+    if transaksi is None:
+        transaksi = data[1]
+    if hutang is None:
+        hutang = data[2]
+    if perhitungan is None:
+        perhitungan = data[3]
+    simpan = {"anggota": anggota, "transaksi": transaksi, "hutang": hutang, "perhitungan": perhitungan}
+    unggah(simpan)
+
+
 
 def openbackup():
     with open("backup.json", "r") as f:

@@ -1,15 +1,37 @@
-import Pencatatan
+import pencatatan
 import pengelolaan
 import tampilkan
 
+def pembagianRata(peserta, pembayar):
+    item = input("Nama Produk: ")
+    while True:
+        harga = input("Harga Satuan/Harga Total(s/t): ").lower()
+        if harga == "s":
+            harga = pencatatan.cek("Harga: ", f"\033[91mHarga Harus Berupa Angka! \033[0m")
+            break
+        elif harga == "t":
+            total = pencatatan.cek("Harga: ", f"\033[91mHarga Harus Berupa Angka! \033[0m")
+            harga = total/len(peserta)
+            if harga % 10 != 0:
+                if harga % 1000 < 500:
+                    harga = harga - (harga % 1000)
+                else:
+                    harga = harga - (harga % 1000) + 1000
+            break
+        else:
+            print(f"\033[91mPembagian Harus Berupa Satuan/Total \033[0m")
+            continue
+    print(harga)
+ 
+    
 def Flat(participant, payer):
     historyr = []
     item = input("nama produk: ")
     ptan = input("Harga satuan/Harga total?(s/t): ")
     if ptan.title() == "Harga satuan" or ptan.lower() == "s":
-        harga = Pencatatan.Check(pesan="Harga satuan: ", eror="input yang bener la")
+        harga = pencatatan.Check(pesan="Harga satuan: ", eror="input yang bener la")
     else:
-        harga = Pencatatan.Check(pesan="Harga total: ", eror="input yang bener la")
+        harga = pencatatan.Check(pesan="Harga total: ", eror="input yang bener la")
         harga = harga/len(participant)
         if harga % 10 != 0:
             if harga % 1000 < 500:
@@ -44,7 +66,7 @@ def Per_Item(participant, payer):
             item = {}
             x = input(f"item: ")
             if x == ".": break
-            y = Pencatatan.Check(pesan="harga: ", eror="harga tidak valid!")
+            y = pencatatan.Check(pesan="harga: ", eror="harga tidak valid!")
             item = {"item": x, "harga": y }
             produk.append(item)
         jum = 0
@@ -73,7 +95,7 @@ def Net_Debt():
     debt = p[2]
     rihu = p[3]
     panjang = len(debt)
-    waktu = Pencatatan.Timeisit()
+    waktu = pencatatan.Timeisit()
     srh = {"net": "waktu", "waktu": waktu}
     rihu.append(srh)
     try:    
@@ -132,7 +154,7 @@ def elimination():
     p = pengelolaan.akses()
     hutang = p[2]
     rihu = p[3]
-    waktu = Pencatatan.Timeisit()
+    waktu = pencatatan.Timeisit()
     srh = {"net": "waktu", "waktu": waktu}
     rihu.append(srh)
     print("===================  Simplikasi  ==================")

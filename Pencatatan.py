@@ -67,14 +67,13 @@ def Transaction():
     pengelolaan.Save(simpan)
     
 
-def Check(pesan, eror):
+def cek(pesan, eror):
     while True:    
         try:
             x = int(input(pesan))
             break
         except ValueError: print(eror)
     return x
-
 
 def Validparticipant(pesan, error, re):
     valid = input(pesan)
@@ -171,7 +170,7 @@ def pay():
 
     for i in range(len(hutang)):
         if payer.title() == hutang[i]["nama"] and to.title() == hutang[i]["ke"]:
-            jumlah = Check("Jumlah yang dibayarkan: ", "input tidak valid!")
+            jumlah = cek("Jumlah yang dibayarkan: ", "input tidak valid!")
             hutangs = hutang[i]["jumlah"]
             hutang[i]["jumlah"] = hutang[i]["jumlah"] - jumlah
             

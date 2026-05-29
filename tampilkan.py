@@ -1,4 +1,4 @@
-import Pencatatan
+import pencatatan
 import pengelolaan
 
 space = ""
@@ -20,7 +20,7 @@ def History(riwayat):
 
 
 def History_Flat(mambo,riwayat):
-    desc = Pencatatan.description(teks=riwayat[mambo]["deskripsi"])
+    desc = pencatatan.description(teks=riwayat[mambo]["deskripsi"])
     print("+---+--------------+----------------------+---------------+----------------------+")
     historyr = riwayat[mambo]
     k = 0
@@ -49,7 +49,7 @@ def History_Flat(mambo,riwayat):
 
 
 def History_Peritem(mambo,riwayat):
-    desc = Pencatatan.description(teks=riwayat[mambo]["deskripsi"])
+    desc = pencatatan.description(teks=riwayat[mambo]["deskripsi"])
     print("+---+--------------+----------------------+---------------+----------------------+")
     no = 1
     k = 0
