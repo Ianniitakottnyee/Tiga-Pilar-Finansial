@@ -1,4 +1,17 @@
+templat
+cek - pengelolaan
+waktu - pencatatan
+
+
 Jum'at 29 Mei 2026
 input user - anggota
 mode pembagian rata - perhitungan
+cek pesan integer - pengelolaan
+simpan ke json - pengelolaan
+
+Sabtu 30 Mei 2026
+menu pembagian peritem - perhitungan
+transaksi - pencatatan
+cek peserta sah - pencatatan
+
 

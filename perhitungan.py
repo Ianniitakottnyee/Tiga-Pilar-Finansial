@@ -2,15 +2,27 @@ import pencatatan
 import pengelolaan
 import tampilkan
 
-def pembagianRata(peserta, pembayar):
+data = pengelolaan.akses()
+kumpulanTransaksi = data[1]
+
+
+class graph:
+    def __init__(self):
+        self.hutang = {}
+
+
+def hutang():
+    ...
+
+def pembagianRata(peserta, pembayar, waktu, deskripsi):
     item = input("Nama Produk: ")
     while True:
         harga = input("Harga Satuan/Harga Total(s/t): ").lower()
         if harga == "s":
-            harga = pencatatan.cek("Harga: ", f"\033[91mHarga Harus Berupa Angka! \033[0m")
+            harga = pencatatan.cek("Harga: ", "Harga Harus Berupa Angka!")
             break
         elif harga == "t":
-            total = pencatatan.cek("Harga: ", f"\033[91mHarga Harus Berupa Angka! \033[0m")
+            total = pencatatan.cek("Harga: ", "Harga Harus Berupa Angka!")
             harga = total/len(peserta)
             if harga % 10 != 0:
                 if harga % 1000 < 500:
@@ -21,73 +33,33 @@ def pembagianRata(peserta, pembayar):
         else:
             print(f"\033[91mPembagian Harus Berupa Satuan/Total \033[0m")
             continue
-    print(harga)
- 
-    
-def Flat(participant, payer):
-    historyr = []
-    item = input("nama produk: ")
-    ptan = input("Harga satuan/Harga total?(s/t): ")
-    if ptan.title() == "Harga satuan" or ptan.lower() == "s":
-        harga = pencatatan.Check(pesan="Harga satuan: ", eror="input yang bener la")
-    else:
-        harga = pencatatan.Check(pesan="Harga total: ", eror="input yang bener la")
-        harga = harga/len(participant)
-        if harga % 10 != 0:
-            if harga % 1000 < 500:
-                harga = harga - (harga % 1000)
-            else:
-                harga = harga - (harga % 1000) + 1000
-
-    p = pengelolaan.akses()
-    debt = p[2]
-    for i in range(len(participant)):
-        riwayatr = {"nama" : participant[i]}
-        historyr.append(riwayatr)
-        if participant[i] == payer:
-            continue
-        else:
-            hutang = {}
-            hutang = {"nama" : participant[i], "jumlah" : harga, "ke" : payer}
-            debt.append(hutang)
-
-    return [historyr, item, harga, debt]
+    transaksi = {"peserta": peserta, "pembayar": pembayar, "item": item, "harga": harga, "waktu": waktu, "deskripsi": deskripsi}
+    global kumpulanTransaksi
+    kumpulanTransaksi.append(transaksi)
+    pengelolaan.simpan(transaksi=kumpulanTransaksi)
 
 
-def Per_Item(participant, payer):
-    historyp = []
-    list_peritem = []
-    print("catat masing-masing membeli apa:")
-    for i in range(len(participant)):
-        pemilik = {}
-        produk = []
-        print(f"{i+1}. {participant[i]}: ")
+def pembagianPerItem(peserta, pembayar, waktu, deskripsi):
+    print("Catat Item Yang Dibeli:")
+    print("Ketik '/' Pada Item Untuk Selesai Menambahkan")
+    persetuy = []
+    for i in range(len(peserta)):
+        print(f"{i+1}. {peserta[i]}:")
+        kumpulanItem = []
         while True:
-            item = {}
-            x = input(f"item: ")
-            if x == ".": break
-            y = pencatatan.Check(pesan="harga: ", eror="harga tidak valid!")
-            item = {"item": x, "harga": y }
-            produk.append(item)
-        jum = 0
-        for j in range(len(produk)):
-            jum += produk[j]["harga"]
+            item = input("Item: ")
+            if item == "/":
+                break
+            harga = pencatatan.cek("Harga: ", "Harga Harus Berupa Angka!")
+            x = {item: harga}
+            kumpulanItem.append(x)
+        y = {peserta[i]: kumpulanItem}
+        persetuy.append(y)
     
-        pemilik = {"punya": participant[i], "produk": produk, "total": jum}
-        list_peritem.append(pemilik)
-        
-        p = pengelolaan.akses()
-        debt = p[2]    
-    for i in range(len(list_peritem)):
-        hutang = {}
-        riwayat = {"nama" : list_peritem[i]["punya"], "produk": list_peritem[i]["produk"]}
-        historyp.append(riwayat)
-        if list_peritem[i]["punya"] == payer:
-            continue
-        else:
-            hutang = {"nama" : list_peritem[i]["punya"], "jumlah" : list_peritem[i]["total"], "ke" : payer}
-            debt.append(hutang)
-    return [historyp, debt]
+    transaksi = {"peserta": persetuy, "pembayar": pembayar, "waktu": waktu, "deskripsi": deskripsi}
+    global kumpulanTransaksi
+    kumpulanTransaksi.append(transaksi)
+    pengelolaan.simpan(transaksi=kumpulanTransaksi)  
     
 
 def Net_Debt():

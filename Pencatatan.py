@@ -3,68 +3,50 @@ import time
 import perhitungan
 import pengelolaan
 import tampilkan
+import pencatatan
 
 
-def Transaction():
-    print("Pilih mode:\n1. Pembagian Rata\n2. Pencatatan per-item")
+def Transaksi():
+    print("Pilih Menu:\n1. Pembagian Rata (Pembelian Item Yang Sama)\n2. Pembagian Per-item (Pembelian Item Yang Berbeda)")
     while True:
-        mode = input("mode: ").lower()
-        if mode == "1" or mode == "pembagian rata":
-            mode = 1
-            break
-        elif mode == "2" or mode == "pencatatan per-item":
-            mode = 2
-            break
-        else: print("mode tidak valid")
-
-    anggota.Show_Users()
-    participant = []
-    payer = None
-    while payer == None:
-        payer = Validparticipant("Siapa yang bayar: ", "Pembayar belum terdaftar sebagai anggota. ingin menambahkannya sebagai anggota?(ya/tidak): ", "Silahkan input ulang pembayar!")
-    ikut = input("Apakah pembayar ikut membeli? (tekan enter jika ya, ketik apa saja jika tidak)")
-    if ikut == "":
-        participant.append(payer)
-    
-    print(f"Siapa saja yang ikut membeli: (ketik \".\" jika selesai menambahkan)")
-    i = 1
-    while True:
-        part = Validparticipant(f"{i}. ", "Anggota belum terdaftar, ingin menambahkannya sebagai anggota?(ya/tidak): ", "Silahkan input ulang anggota.")
-        if part == ".": break
-        if part in participant:
-            print("Anggota sudah ditambahkan")
+        menu = pencatatan.cek("Menu: ", "Menu Harus Berupa Angka!")
+        if menu > 2 or menu < 1:
+            print("Menu Tidak Tersedia.")
         else:
-            participant.append(part)
-            i+=1
-    try:
-        for i in range(len(participant)):
-            if participant[i] == None:
-                inx = i
-        participant.pop(inx)
-    except UnboundLocalError: ...
+            break
     
-    t = pengelolaan.akses()
-    riwayat = t[1]
-    try:
-        trans = riwayat[-1]["trans"] + 1
-    except KeyError, IndexError:
-        trans = 0
-    deskripsi = input("Tambahkan deskripsi:\n")
-    jam = Timeisit()
+    #TO DO Tampilkan anggota
+    anggota.Show_Users()
 
-    if mode == 1:
-        f = perhitungan.Flat(participant, payer)
-        history = {"part": f[0], "deskripsi": deskripsi, "waktu": jam, "payer": payer,"produk":f[1], "harga": f[2], "tipe": "f", "trans": trans}
-        riwayat.append(history)
-        simpan = {"users": t[0], "riwayat": riwayat, "hutang": f[3], "rh": t[3], "trans": trans}
-    else: 
-        p = perhitungan.Per_Item(participant, payer)
-        history = {"part": p[0], "deskripsi": deskripsi, "waktu": jam, "payer": payer, "tipe": "p"}
-        riwayat.append(history)
-        simpan = {"users": t[0], "riwayat": riwayat, "hutang": p[1], "rh": t[3]}
-  
-    print("Transaksi berhasil dicatat!")
-    pengelolaan.Save(simpan)
+    peserta = []
+    i = 1
+
+    while True:
+        ikut = pesertaSah(f"{i}. ", "Anggota Belum Terdaftar, Ingin Menambahkannya Sebagai Anggota?(ya/tidak): ", "Silahkan Input Ulang Anggota.").title()
+        
+        if ikut == ".":
+            break
+        if ikut in peserta:
+            print("Anggota Sudah Ditambahkan")
+        else:
+            peserta.append(ikut)
+            i+=1
+
+    pembayar = pesertaSah("Pembayar: ", "Pembayar Belum Terdaftar, Ingin Menambahkannya Sebagai Anggota?(ya/tidak): ", "Silahkan Input Ulang Pembayar." )
+
+    waktu = Timeisit()
+    deskripsi = input("Tambahkan Deskripsi: ")
+
+    if menu == 1:
+        perhitungan.pembagianRata(peserta=peserta, pembayar=pembayar, waktu=waktu, deskripsi=deskripsi)
+    else:
+        perhitungan.pembagianPerItem(peserta=peserta, pembayar=pembayar, waktu=waktu, deskripsi=deskripsi)
+
+    print("Transaksi Berhasil Dicatat")
+        
+
+
+
     
 
 def cek(pesan, eror):
@@ -72,30 +54,37 @@ def cek(pesan, eror):
         try:
             x = int(input(pesan))
             break
-        except ValueError: print(eror)
+        except ValueError: print(f"\033[91m{eror}\033[0m")
     return x
 
-def Validparticipant(pesan, error, re):
+
+def pesertaSah(pesan, eror, ulang):
     valid = input(pesan)
     try:
-        id_ = int(valid)
-    except ValueError: id_ = valid
+        aidi = int(valid)
+    except ValueError: aidi = 0
     p = pengelolaan.akses()
-    anggota = p[0]
-    for x in anggota:
-        if valid.lower() == x["nama"].lower() or id_ == x["id"]:
-            return x["nama"]
-            break
+    daftarAnggota = p[0]
+    for nama in daftarAnggota:
         if valid == ".":
-            return "."
+            return valid
+            break
+        if valid.lower() == nama["nama"].lower() or aidi == nama["id"]:
+            return nama["nama"]
+            break
     else:
-        repeat = input(error)
+        repeat = input(eror)
         if repeat.lower() == "ya":
-            anggota.Add_Users()
+            anggota.tambahkanAnggata()
             print("Berhasil menambahkan anggota baru!")
+            return valid
         else:
-            print(re)
-            return Validparticipant(pesan, error, re)
+            print(ulang)
+            pesertaSah(pesan, eror, ulang)
+            return valid
+
+
+
 
 
 def Timeisit():

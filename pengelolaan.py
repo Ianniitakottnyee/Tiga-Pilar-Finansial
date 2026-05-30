@@ -4,7 +4,7 @@ import json
 
 def unggah(simpan):
     with open("data.json", "w") as f:
-        json.dump(simpan, f)
+        json.dump(simpan, f, indent= 4)
 
 
 def buka():
@@ -41,7 +41,6 @@ def simpan(anggota= None, transaksi= None, hutang= None, perhitungan= None):
         perhitungan = data[3]
     simpan = {"anggota": anggota, "transaksi": transaksi, "hutang": hutang, "perhitungan": perhitungan}
     unggah(simpan)
-
 
 
 def openbackup():

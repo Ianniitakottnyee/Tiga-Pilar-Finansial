@@ -1,1 +1,168 @@
-{"anggota": [{"nama": "Ain", "id": 1}, {"nama": "Ian", "id": 2}, {"nama": "Iun", "id": 3}, {"nama": "Cika", "id": 4}, {"nama": "Tipa", "id": 5}, {"nama": "Salsa", "id": 6}], "transaksi": [], "hutang": [], "perhitungan": []}
+{
+    "anggota": [
+        {
+            "nama": "Ain",
+            "id": 1
+        },
+        {
+            "nama": "Ian",
+            "id": 2
+        },
+        {
+            "nama": "Iun",
+            "id": 3
+        },
+        {
+            "nama": "Cika",
+            "id": 4
+        },
+        {
+            "nama": "Tipa",
+            "id": 5
+        },
+        {
+            "nama": "Salsa",
+            "id": 6
+        },
+        {
+            "nama": "Angga",
+            "id": 7
+        },
+        {
+            "nama": "Haikal",
+            "id": 8
+        },
+        {
+            "nama": "Depin",
+            "id": 9
+        },
+        {
+            "nama": "Zaki",
+            "id": 10
+        },
+        {
+            "nama": "Lina",
+            "id": 11
+        },
+        {
+            "nama": "Aca",
+            "id": 12
+        },
+        {
+            "nama": "Opet",
+            "id": 13
+        },
+        {
+            "nama": "Vira",
+            "id": 14
+        },
+        {
+            "nama": "Lala",
+            "id": 15
+        },
+        {
+            "nama": "Gamuy",
+            "id": 16
+        }
+    ],
+    "transaksi": [
+        {
+            "peserta": [
+                "Ain",
+                "Ian"
+            ],
+            "pembayar": "Ain",
+            "item": "Aa",
+            "harga": 12,
+            "waktu": "3",
+            "deskripsi": "kkaka"
+        },
+        {
+            "peserta": [
+                "Ain",
+                "Ian",
+                "Iun"
+            ],
+            "pembayar": "Ain",
+            "item": "bakso lahar",
+            "harga": 30000,
+            "waktu": "29 mei 2026",
+            "deskripsi": "beli makan"
+        },
+        {
+            "peserta": [
+                {
+                    "Ain": [
+                        {
+                            "sate": 15000
+                        },
+                        {
+                            "naspad padang": 16000
+                        }
+                    ]
+                },
+                {
+                    "Ian": [
+                        {
+                            "teh rakyat bang": 10000
+                        }
+                    ]
+                },
+                {
+                    "Iun": [
+                        {
+                            "angga susu": 8000
+                        },
+                        {
+                            "jamsr crispruy": 19000
+                        }
+                    ]
+                }
+            ],
+            "pembayar": "Ain",
+            "waktu": "29 mei 2026",
+            "deskripsi": "beli makan"
+        },
+        {
+            "peserta": [
+                "Ain",
+                "Ian",
+                "Iun"
+            ],
+            "pembayar": "Ain",
+            "item": "m",
+            "harga": 1,
+            "waktu": "29 mei 2026",
+            "deskripsi": "beli makan"
+        },
+        {
+            "peserta": [
+                {
+                    "Ain": []
+                },
+                {
+                    "Ian": []
+                },
+                {
+                    "Iun": []
+                }
+            ],
+            "pembayar": "Ain",
+            "waktu": "29 mei 2026",
+            "deskripsi": "beli makan"
+        },
+        {
+            "peserta": [
+                "Lala",
+                "Gamuy"
+            ],
+            "pembayar": "Iun",
+            "item": "Angguy",
+            "harga": 0,
+            "waktu": " 30 Mei 2026 jam 16:36:00",
+            "deskripsi": "ribut"
+        }
+    ],
+    "hutang": [],
+    "perhitungan": []
+}
