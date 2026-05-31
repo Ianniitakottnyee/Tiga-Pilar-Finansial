@@ -9,158 +9,52 @@
             "id": 2
         },
         {
-            "nama": "Iun",
-            "id": 3
-        },
-        {
-            "nama": "Cika",
-            "id": 4
-        },
-        {
-            "nama": "Tipa",
-            "id": 5
-        },
-        {
-            "nama": "Salsa",
-            "id": 6
-        },
-        {
             "nama": "Angga",
-            "id": 7
-        },
-        {
-            "nama": "Haikal",
-            "id": 8
-        },
-        {
-            "nama": "Depin",
-            "id": 9
-        },
-        {
-            "nama": "Zaki",
-            "id": 10
-        },
-        {
-            "nama": "Lina",
-            "id": 11
-        },
-        {
-            "nama": "Aca",
-            "id": 12
-        },
-        {
-            "nama": "Opet",
-            "id": 13
-        },
-        {
-            "nama": "Vira",
-            "id": 14
-        },
-        {
-            "nama": "Lala",
-            "id": 15
-        },
-        {
-            "nama": "Gamuy",
-            "id": 16
+            "id": 3
         }
     ],
     "transaksi": [
         {
             "peserta": [
                 "Ain",
-                "Ian"
-            ],
-            "pembayar": "Ain",
-            "item": "Aa",
-            "harga": 12,
-            "waktu": "3",
-            "deskripsi": "kkaka"
-        },
-        {
-            "peserta": [
-                "Ain",
                 "Ian",
-                "Iun"
+                "Angga"
             ],
-            "pembayar": "Ain",
-            "item": "bakso lahar",
-            "harga": 30000,
-            "waktu": "29 mei 2026",
-            "deskripsi": "beli makan"
+            "pembayar": "Angga",
+            "item": "Pagi sore borong sak sa rumah makannya",
+            "harga": 1000000,
+            "waktu": " 31 Mei 2026 jam 16:32:00",
+            "deskripsi": "Traktiran ultah tahun",
+            "kode": "r"
         },
         {
             "peserta": [
                 {
                     "Ain": [
                         {
-                            "sate": 15000
-                        },
-                        {
-                            "naspad padang": 16000
+                            "terserah": 11000
                         }
                     ]
                 },
                 {
                     "Ian": [
                         {
-                            "teh rakyat bang": 10000
+                            "geprek": 13000
                         }
                     ]
                 },
                 {
-                    "Iun": [
+                    "Angga": [
                         {
-                            "angga susu": 8000
-                        },
-                        {
-                            "jamsr crispruy": 19000
+                            "Riau": 10000000
                         }
                     ]
                 }
             ],
             "pembayar": "Ain",
-            "waktu": "29 mei 2026",
-            "deskripsi": "beli makan"
-        },
-        {
-            "peserta": [
-                "Ain",
-                "Ian",
-                "Iun"
-            ],
-            "pembayar": "Ain",
-            "item": "m",
-            "harga": 1,
-            "waktu": "29 mei 2026",
-            "deskripsi": "beli makan"
-        },
-        {
-            "peserta": [
-                {
-                    "Ain": []
-                },
-                {
-                    "Ian": []
-                },
-                {
-                    "Iun": []
-                }
-            ],
-            "pembayar": "Ain",
-            "waktu": "29 mei 2026",
-            "deskripsi": "beli makan"
-        },
-        {
-            "peserta": [
-                "Lala",
-                "Gamuy"
-            ],
-            "pembayar": "Iun",
-            "item": "Angguy",
-            "harga": 0,
-            "waktu": " 30 Mei 2026 jam 16:36:00",
-            "deskripsi": "ribut"
+            "waktu": " 31 Mei 2026 jam 16:35:32",
+            "deskripsi": "UNRI",
+            "kode": "p"
         }
     ],
     "hutang": [],

@@ -1,4 +1,13 @@
 import perhitungan
-import anggota
+import pengelolaan
+import pencatatan
 
-print("xxxxxx")
+
+
+kumpulanTransaksi = pengelolaan.akses()[1]
+
+graph = perhitungan.graph()
+graph.transaksiKeHutang(kumpulanTransaksi)
+
+print("Hutang setelah transaksi ke hutang:")
+graph.tampilkanHutang()

@@ -2,6 +2,21 @@ templat
 cek - pengelolaan
 waktu - pencatatan
 
+1. Sorting (hutang terbesar ke terkecil)
+2. File Handler (penyimpanan data) ☑️
+3. Searching (pencarian riwayat transaksi)
+4. Rekursif ➖
+5. List ☑️, Tuple, Set, Dictionary ☑️
+6. Stack/Queue (untuk bagian undo dan redo)
+7. OOP (graph) ☑️
+8. Single Linked List (hutang)
+9. Double Linked List (nyimpan anggota)
+10. Circular Linked List (nyimpan transaksi)
+
+Penerapan Materi Tambahan:
+1. Tree (main menu)
+2. Graph (relasi hutang) ➖
+3. Hash table (bisa ini)
 
 Jum'at 29 Mei 2026
 input user - anggota
@@ -14,4 +29,6 @@ menu pembagian peritem - perhitungan
 transaksi - pencatatan
 cek peserta sah - pencatatan
 
+Minggu 31 Mei 2026
+class Graph - perhitungan (banyak bangets jiers)
 

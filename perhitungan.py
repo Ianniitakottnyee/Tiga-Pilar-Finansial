@@ -5,15 +5,77 @@ import tampilkan
 data = pengelolaan.akses()
 kumpulanTransaksi = data[1]
 
-
+...
 class graph:
     def __init__(self):
         self.hutang = {}
 
+    def tambahOrang(self, nama):
+        if nama not in self.hutang:
+            self.hutang[nama] = {}
 
-def hutang():
-    ...
+    def transaksiKeHutang(self, kumpulanTransaksi):
+        for transaksi in kumpulanTransaksi:
+            if transaksi["kode"] == "r":
+                peserta = transaksi["peserta"]
+                pembayar = transaksi["pembayar"]
+                hutangPerOrang = transaksi["harga"]
+                for orang in peserta:
+                    if orang != pembayar:
+                        self.tambahHutang(orang, pembayar, hutangPerOrang)
+            else:
+                kumpulanPeserta = transaksi["peserta"]
+                pembayar = transaksi["pembayar"]
+                for perorang in kumpulanPeserta:
+                    totalHarga = 0
+                    if list(perorang.keys())[0] != pembayar:
+                        nama = list(perorang.keys())[0]
+                        for item in perorang[nama]:
+                            hitem = list(item.keys())[0]
+                            totalHarga += item[hitem]
+                        self.tambahHutang(nama, pembayar, totalHarga)
 
+    def tambahHutang(self, nama1, nama2, jumlah):
+        self.tambahOrang(nama1)
+        self.tambahOrang(nama2)
+        if nama2 in self.hutang[nama1]:
+            self.hutang[nama1][nama2] += jumlah
+        else:
+            self.hutang[nama1][nama2] = jumlah
+
+    def netHutang(self):
+        for nama1 in self.hutang:
+            for nama2 in self.hutang[nama1]:
+                if nama1 in self.hutang[nama2]:
+                    if self.hutang[nama1][nama2] > self.hutang[nama2][nama1]:
+                        self.hutang[nama1][nama2] -= self.hutang[nama2][nama1]
+                        del self.hutang[nama2][nama1]
+                    elif self.hutang[nama1][nama2] < self.hutang[nama2][nama1]:
+                        self.hutang[nama2][nama1] -= self.hutang[nama1][nama2]
+                        del self.hutang[nama1][nama2]
+                    else:
+                        del self.hutang[nama1][nama2]
+                        del self.hutang[nama2][nama1]
+
+    def tampilkanHutang(self):
+        for nama1 in self.hutang:
+            for nama2 in self.hutang[nama1]:
+                print(f"{nama1} berhutang {self.hutang[nama1][nama2]} kepada {nama2}")
+
+    def pembayaran(self, nama1, nama2, jumlah):
+        if nama2 in self.hutang[nama1]:
+            if self.hutang[nama1][nama2] > jumlah:
+                self.hutang[nama1][nama2] -= jumlah
+            elif self.hutang[nama1][nama2] < jumlah:
+                sisa = jumlah - self.hutang[nama1][nama2]
+                del self.hutang[nama1][nama2]
+                self.tambahHutang(nama2, nama1, sisa)
+            else:
+                del self.hutang[nama1][nama2]
+        else:
+            print(f"{nama1} tidak berhutang kepada {nama2}")
+
+...
 def pembagianRata(peserta, pembayar, waktu, deskripsi):
     item = input("Nama Produk: ")
     while True:
@@ -33,12 +95,12 @@ def pembagianRata(peserta, pembayar, waktu, deskripsi):
         else:
             print(f"\033[91mPembagian Harus Berupa Satuan/Total \033[0m")
             continue
-    transaksi = {"peserta": peserta, "pembayar": pembayar, "item": item, "harga": harga, "waktu": waktu, "deskripsi": deskripsi}
+    transaksi = {"peserta": peserta, "pembayar": pembayar, "item": item, "harga": harga, "waktu": waktu, "deskripsi": deskripsi, "kode": "r"}
     global kumpulanTransaksi
     kumpulanTransaksi.append(transaksi)
     pengelolaan.simpan(transaksi=kumpulanTransaksi)
 
-
+...
 def pembagianPerItem(peserta, pembayar, waktu, deskripsi):
     print("Catat Item Yang Dibeli:")
     print("Ketik '/' Pada Item Untuk Selesai Menambahkan")
@@ -56,7 +118,7 @@ def pembagianPerItem(peserta, pembayar, waktu, deskripsi):
         y = {peserta[i]: kumpulanItem}
         persetuy.append(y)
     
-    transaksi = {"peserta": persetuy, "pembayar": pembayar, "waktu": waktu, "deskripsi": deskripsi}
+    transaksi = {"peserta": persetuy, "pembayar": pembayar, "waktu": waktu, "deskripsi": deskripsi, "kode": "p"}
     global kumpulanTransaksi
     kumpulanTransaksi.append(transaksi)
     pengelolaan.simpan(transaksi=kumpulanTransaksi)  

@@ -5,7 +5,7 @@ import pengelolaan
 import tampilkan
 import pencatatan
 
-
+...
 def Transaksi():
     print("Pilih Menu:\n1. Pembagian Rata (Pembelian Item Yang Sama)\n2. Pembagian Per-item (Pembelian Item Yang Berbeda)")
     while True:
@@ -20,11 +20,11 @@ def Transaksi():
 
     peserta = []
     i = 1
-
+    print("Masukkan Nama Anggota Yang Ikut Dalam Transaksi. Ketik '/' Jika Sudah Selesai.")
     while True:
         ikut = pesertaSah(f"{i}. ", "Anggota Belum Terdaftar, Ingin Menambahkannya Sebagai Anggota?(ya/tidak): ", "Silahkan Input Ulang Anggota.").title()
         
-        if ikut == ".":
+        if ikut == "/":
             break
         if ikut in peserta:
             print("Anggota Sudah Ditambahkan")
@@ -41,14 +41,9 @@ def Transaksi():
         perhitungan.pembagianRata(peserta=peserta, pembayar=pembayar, waktu=waktu, deskripsi=deskripsi)
     else:
         perhitungan.pembagianPerItem(peserta=peserta, pembayar=pembayar, waktu=waktu, deskripsi=deskripsi)
-
     print("Transaksi Berhasil Dicatat")
         
-
-
-
-    
-
+...
 def cek(pesan, eror):
     while True:    
         try:
@@ -57,7 +52,7 @@ def cek(pesan, eror):
         except ValueError: print(f"\033[91m{eror}\033[0m")
     return x
 
-
+...
 def pesertaSah(pesan, eror, ulang):
     valid = input(pesan)
     try:
@@ -66,7 +61,7 @@ def pesertaSah(pesan, eror, ulang):
     p = pengelolaan.akses()
     daftarAnggota = p[0]
     for nama in daftarAnggota:
-        if valid == ".":
+        if valid == "." or valid == "/":
             return valid
             break
         if valid.lower() == nama["nama"].lower() or aidi == nama["id"]:
@@ -83,10 +78,7 @@ def pesertaSah(pesan, eror, ulang):
             pesertaSah(pesan, eror, ulang)
             return valid
 
-
-
-
-
+...
 def Timeisit():
     atimess = time.localtime()
     waktu = {"tahun" : atimess[0], "bulan" : atimess[1], "tanggal": atimess[2], "jam" : atimess[3], "menit": atimess[4], "detik": atimess[5]}

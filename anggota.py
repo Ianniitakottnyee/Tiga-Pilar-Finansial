@@ -1,6 +1,6 @@
 import pengelolaan
 
-
+...
 def tambahkanAnggata():
     data = pengelolaan.akses()
     if data[0] == []:
@@ -30,44 +30,6 @@ def tambahkanAnggata():
             data[0].append(anggota)
     pengelolaan.simpan(anggota= data[0])
     print("Anggota Ditambahkan.")
-
-
-
-
-
-def Add_Users():
-    user = {}
-    Show_Users()
-
-    p = pengelolaan.akses()
-    users = p[0]
-    if users == []:
-        id = 0
-    else: id = users[-1]["id"]
-    print("Tambahkan Anggota Baru:")
-    print("Tekan (.) jika selesai menambahkan.")
-    i = 1
-    while True:
-        new = input(f"{i}. ")
-        tambah = True
-        if new == ".":
-            break
-        for x in users:
-            if x["nama"] == new.title():
-                print("Anggota sudah ditambahkan")
-                tambah = False
-                break
-        if new == "":
-            print("input tidak valid.")
-        else:
-            if tambah == True:
-                id += 1
-                user = {"nama" : new.title(), "id" : id}
-                users.append(user)
-                i+=1
-
-    simpan = {"users": users, "riwayat": p[1], "hutang": p[2], "rh": p[3]}
-    pengelolaan.Save(simpan)
 
 
 def Show_Users():
