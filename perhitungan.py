@@ -2,8 +2,6 @@ import pencatatan
 import pengelolaan
 import tampilkan
 
-data = pengelolaan.akses()
-kumpulanTransaksi = data[1]
 
 ...
 class graph:
@@ -58,9 +56,23 @@ class graph:
                         del self.hutang[nama2][nama1]
 
     def tampilkanHutang(self):
+        print("+----+--------------------+--------------------+---------------+")
+        print("| No |        NAMA        |  Berhutang Kepada  |     Jumlah    |")
+        print("+----+--------------------+--------------------+---------------+")
+        no = 0
+        kosong = ""
         for nama1 in self.hutang:
+            pertama = True
+            no += 1
+            print(f"| {no}. ", end = "")
             for nama2 in self.hutang[nama1]:
-                print(f"{nama1} berhutang {self.hutang[nama1][nama2]} kepada {nama2}")
+                if pertama == True:
+                    print(f"| {nama1.ljust(18)} | {nama2.ljust(18)} | {str(self.hutang[nama1][nama2]).ljust(13)} |")
+                    pertama = False
+                    print("+----+--------------------+--------------------+---------------+")
+                else:
+                    print(f"| {kosong.ljust(2)} | {nama1.ljust(18)} | {nama2.ljust(18)} | {str(self.hutang[nama1][nama2]).ljust(13)} |")
+                    print("+----+--------------------+--------------------+---------------+")
 
     def pembayaran(self, nama1, nama2, jumlah):
         if nama2 in self.hutang[nama1]:

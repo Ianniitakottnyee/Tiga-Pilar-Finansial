@@ -111,6 +111,38 @@ def Timeisit():
     else: return (f"{er.ljust(27)}")
 
 
+
+
+    
+"""
+
+
+
+
+
+
+def traverseAndPrint(head):
+  currentNode = head
+  while currentNode:
+    print(currentNode.data, end=" -> ")
+    currentNode = currentNode.next
+  print("null")
+
+def insertNodeAtPosition(head, newNode, position):
+  if position == 1:
+    newNode.next = head
+    return newNode
+
+  currentNode = head
+  for _ in range(position - 2):
+    if currentNode.next is None:
+      break
+    currentNode = currentNode.next
+
+  newNode.next = currentNode.next
+  currentNode.next = newNode
+  return head
+
 def description(teks, panjang=60):
     chat = []
     for i in range(0, len(teks), panjang):
@@ -173,3 +205,4 @@ def pay():
             pengelolaan.Save(simpan)
 
             break
+"""

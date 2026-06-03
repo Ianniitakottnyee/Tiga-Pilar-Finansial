@@ -18,17 +18,25 @@ Penerapan Materi Tambahan:
 2. Graph (relasi hutang) ➖
 3. Hash table (bisa ini)
 
-Jum'at 29 Mei 2026
+========================================
+Hari Tanggal Bulan Tahun (Luring) Daring
+========================================
+Selasa 19 Mei 2026 (Ian Iun Ain)
+class anggata - anggota
+
+Jum'at 29 Mei 2026 (Ain Ian) Iun
 input user - anggota
 mode pembagian rata - perhitungan
 cek pesan integer - pengelolaan
 simpan ke json - pengelolaan
 
-Sabtu 30 Mei 2026
+Sabtu 30 Mei 2026 () Ian Ain Iun
 menu pembagian peritem - perhitungan
 transaksi - pencatatan
 cek peserta sah - pencatatan
 
-Minggu 31 Mei 2026
+Minggu 31 Mei 2026 () Ian Iun Ain
 class Graph - perhitungan (banyak bangets jiers)
 
+Rabu 3 Juni 2026 (Iun Ian) Ain
+class Node Transaksi - trans
