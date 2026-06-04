@@ -1,6 +1,5 @@
 import pencatatan
 import pengelolaan
-import tampilkan
 
 
 ...
@@ -42,9 +41,9 @@ class graph:
             self.hutang[nama1][nama2] = jumlah
 
     def netHutang(self):
-        for nama1 in self.hutang:
-            for nama2 in self.hutang[nama1]:
-                if nama1 in self.hutang[nama2]:
+        for nama1 in list(self.hutang):
+            for nama2 in list(self.hutang[nama1]):
+                if nama2 in self.hutang and nama1 in self.hutang[nama2]:
                     if self.hutang[nama1][nama2] > self.hutang[nama2][nama1]:
                         self.hutang[nama1][nama2] -= self.hutang[nama2][nama1]
                         del self.hutang[nama2][nama1]
@@ -56,6 +55,12 @@ class graph:
                         del self.hutang[nama2][nama1]
 
     def tampilkanHutang(self):
+        self.hutang = {k: v for k, v in self.hutang.items() if v}
+        
+        if not self.hutang:
+            print("Tidak ada hutang.")
+            return
+        
         print("+----+--------------------+--------------------+---------------+")
         print("| No |        NAMA        |  Berhutang Kepada  |     Jumlah    |")
         print("+----+--------------------+--------------------+---------------+")
@@ -86,6 +91,35 @@ class graph:
                 del self.hutang[nama1][nama2]
         else:
             print(f"{nama1} tidak berhutang kepada {nama2}")
+
+    def pencarianAin(self):
+        self.hutang = {k: v for k, v in self.hutang.items() if v}
+        print(self.hutang)
+        nama = input("Masukkan nama yang ingin dicari: ").title()
+        hutang = list(self.hutang.keys())
+        print(hutang)
+        for i in range(len(hutang)):
+            if nama == hutang[i]:
+                print(f"{nama} ditemukan dalam data hutang.")
+                break
+        else:
+            print(f"{nama} tidak ditemukan dalam data hutang.")
+
+
+
+
+if __name__ == "__main__":
+    v = graph()
+    v.transaksiKeHutang(pengelolaan.akses()[1])
+    v.netHutang()
+    v.pencarianAin()
+
+
+def linearSearch(arr, targetVal):
+  for i in range(len(arr)):
+    if arr[i] == targetVal:
+      return i
+  return -1
 
 ...
 def pembagianRata(peserta, pembayar, waktu, deskripsi):
@@ -136,101 +170,4 @@ def pembagianPerItem(peserta, pembayar, waktu, deskripsi):
     pengelolaan.simpan(transaksi=kumpulanTransaksi)  
     
 
-def Net_Debt():
-    p = pengelolaan.akses()
-    debt = p[2]
-    rihu = p[3]
-    panjang = len(debt)
-    waktu = pencatatan.Timeisit()
-    srh = {"net": "waktu", "waktu": waktu}
-    rihu.append(srh)
-    try:    
-        for i in range(panjang):
-            for j in range(panjang):
-                srh = {}
-                jmlh = 0
-                if i == j:
-                    continue
-                if debt[i]["jumlah"] < 0:
-                    nama = debt[i]["nama"]
-                    debt[i]["nama"] = debt[i]["ke"]
-                    debt[i]["ke"] = nama
-                    debt[i]["jumlah"] = debt[i]["jumlah"] / -1
-                    srh = {"nama": debt[i]["ke"], "hutang": debt[i]["jumlah"], "ke": debt[i]["nama"], "net": "swap"}
-                    rihu.append(srh)                 
-                if debt[i]["nama"] == debt[j]["nama"] and debt[i]["ke"] == debt[j]["ke"]:
-                    jmlh = debt[i]["jumlah"] + debt[j]["jumlah"]
-                    srh = {"nama": debt[i]["nama"], "jumlah": f"{debt[i]["jumlah"]} + {debt[j]["jumlah"]} = {jmlh}", "ke": debt[j]["ke"], "net": "tambah"}
-                    debt[i]["jumlah"] = jmlh
-                    rihu.append(srh)
-                    debt[j]["ke"] = ""
-                elif debt[i]["nama"] == debt[j]["ke"] and debt[i]["ke"] == debt[j]["nama"]:
-                    if debt[i]["jumlah"] > debt[j]["jumlah"]:
-                        jmlh = debt[i]["jumlah"] - debt[j]["jumlah"]
-                        srh = {"nama": debt[i]["nama"], "jumlah": f"{debt[i]["jumlah"]} - {debt[j]["jumlah"]} = {jmlh}", "ke": debt[i]["ke"], "net": "gabung"}
-                        debt[i]["jumlah"] = jmlh
-                        rihu.append(srh)
-                        debt[j]["ke"] = ""
-                    elif debt[i]["jumlah"] < debt[j]["jumlah"]:
-                        jmlh = debt[j]["jumlah"] - debt[i]["jumlah"]
-                        srh = {"nama": debt[j]["nama"], "jumlah": f"{debt[j]["jumlah"]} - {debt[i]["jumlah"]} = {jmlh}", "ke": debt[j]["ke"], "net": "gabung"}
-                        debt[j]["jumlah"] = jmlh
-                        rihu.append(srh)                        
-                        debt[i]["ke"] = ""
-                    else:
-                        srh = {"nama": debt[i]["nama"], "jumlah": f"{debt[i]["jumlah"]} - {debt[j]["jumlah"]} = 0", "ke": debt[i]["ke"], "status": "Lunas", "net": "gabung"}
-                        rihu.append(srh)                        
-                        debt[i]["ke"] = ""
-                        debt[j]["ke"] = ""
-    except IndexError: pass
-
-    for i in range(panjang, -1, -1):
-        try:
-            if debt[i]["ke"] == "" or debt[i]["jumlah"] == 0.0:
-                debt.pop(i)
-        except IndexError: pass
-    simpan = {"users": p[0], "riwayat": p[1], "hutang": debt, "rh": rihu}
-    pengelolaan.Save(simpan)
-
-    p = pengelolaan.akses()
-    tampilkan.History_Hutang(p[2])
-    return [debt, rihu]
-
-def elimination():
-    p = pengelolaan.akses()
-    hutang = p[2]
-    rihu = p[3]
-    waktu = pencatatan.Timeisit()
-    srh = {"net": "waktu", "waktu": waktu}
-    rihu.append(srh)
-    print("===================  Simplikasi  ==================")
-    for x in hutang:
-        for y in hutang:
-            if x["ke"] == y["nama"]:
-                if x["jumlah"] == y["jumlah"]:
-                    x["ke"] = y["ke"]
-                    srh = {"nama1": x["nama"], "nama2": y["ke"], "nama3": x["ke"], "jumlah": x["jumlah"], "net": "simpel"}
-                    rihu.append(srh)
-                    y["ke"] = ""
-                elif x["jumlah"] > y["jumlah"]:
-                    y["nama"] = x["nama"]
-                    x["jumlah"] = x["jumlah"] - y["jumlah"]
-                    srh = {"nama1": x["nama"], "nama2": x["ke"], "nama3": y["ke"], "jumlah": x["jumlah"], "net": "simpel"}
-                    rihu.append(srh)
-                elif x["jumlah"] < y["jumlah"]:
-                    x["ke"] = y["ke"]
-                    y["jumlah"] = y["jumlah"] - x["jumlah"]
-                    srh = {"nama1": x["nama"], "nama2": y["nama"], "nama3": x["ke"], "jumlah": y["jumlah"], "net": "simpel"}
-                    rihu.append(srh)
-                else:
-                    print("error")
-    for i in range(len(hutang), -1, -1):
-        try:
-            if hutang[i]["ke"] == "":
-                hutang.pop(i)
-        except IndexError: pass
-    simpan = {"users": p[0], "riwayat": p[1], "hutang": hutang, "rh": rihu}
-    pengelolaan.Save(simpan)
-
-    p = pengelolaan.akses()
-    tampilkan.History_Hutang(p[2])
+    

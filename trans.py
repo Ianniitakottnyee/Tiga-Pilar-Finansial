@@ -22,7 +22,6 @@ def ambilAngga():
         proNanti.sebelumnya = noobSekarang
         noobSekarang = noobSekarang.selanjutnya
     
-    # Create circular links
     noobSekarang.selanjutnya = kelapaKepala
     kelapaKepala.sebelumnya = noobSekarang
     
@@ -48,15 +47,14 @@ def tampilkanTransaksi(kelapa):
             print(f"+----+--------------------+---------------------+-----------------+-----------------+")
             no = 0
             kosong = ""
-            for peserta in transaksi.get('peserta', []):
+            for peserta in transaksi["peserta"]:
                 if no == 0:
-                    print(f"| {no+1}. | {peserta.ljust(18)} | {transaksi.get('item', 'N/A').ljust(19)} | Rp {transaksi.get('harga', 0):,.0f} {kosong.ljust(2)} | {transaksi.get('pembayar', 'N/A').ljust(15)} |")
+                    print(f"| {no+1}. | {peserta.ljust(18)} | {transaksi["item"].ljust(19)} | Rp {str(transaksi["harga"]).ljust(12)} | {transaksi["pembayar"].ljust(15)} |")
                     no += 1
                 else:
                     print(f"| {no+1}. | {peserta.ljust(18)} | {kosong.ljust(19)} | {kosong.ljust(15)} | {kosong.ljust(15)} |")
                     no += 1
-            print(f"+------------------------------------------------------------------------------------+")
-            nomor += 1
+            print(f"+----+--------------------+---------------------+-----------------+-----------------+")
 
         else:
             print(f"======================================================================================")
@@ -70,25 +68,18 @@ def tampilkanTransaksi(kelapa):
             for peserta in transaksi["peserta"]:
                 awal = True
                 nama = list(peserta.keys())[0]
-                items_list = peserta[nama]
+                listItem = peserta[nama]
         
-                if items_list: 
-                    for item in items_list:
-                        for produk, harga in item.items():
-                            if awal is True:
-                                print(f"| {no+1}. | {nama.ljust(18)} | {produk.ljust(19)} | Rp {harga:,.0f} {kosong.ljust(2)} | {transaksi.get('pembayar', 'N/A').ljust(15)} |")
-                                awal = False
-                            else:
-                                print(f"| {kosong.ljust(2)} | {kosong.ljust(18)} | {produk.ljust(19)} | Rp {harga:,.0f} {kosong.ljust(2)} | {kosong.ljust(15)} |")
-                else:
-                    print(f"| {no+1}. | {nama.ljust(18)} | {kosong.ljust(19)} | {kosong.ljust(15)} | {transaksi.get('pembayar', 'N/A').ljust(15)} |")
-                
+                for item in listItem:
+                    for produk, harga in item.items():
+                        if awal is True:
+                            print(f"| {no+1}. | {nama.ljust(18)} | {produk.ljust(19)} | Rp {str(harga).ljust(12)} | {transaksi["pembayar"].ljust(15)} |")
+                            awal = False
+                        else:
+                            print(f"| {kosong.ljust(2)} | {kosong.ljust(18)} | {produk.ljust(19)} | Rp {str(harga).ljust(12)} | {kosong.ljust(15)} |")
                 no += 1
-                print(f"+------------------------------------------------------------------------------------+")
-            nomor += 1
+                print(f"+----+--------------------+---------------------+-----------------+-----------------+")
 
-
-              
 
 
         print("\nNavigasi:")
@@ -100,10 +91,16 @@ def tampilkanTransaksi(kelapa):
         
         if user_input == 'n':
             current_node = current_node.selanjutnya
-            no += 1
+            if nomor < len(pengelolaan.akses()[1]):
+                nomor += 1
+            else:
+                nomor = 1
         elif user_input == 'p':
             current_node = current_node.sebelumnya
-            no -= 1
+            if nomor > 1:   
+                nomor -= 1
+            else:
+                nomor = len(pengelolaan.akses()[1])
         elif user_input == 'q':
             print("Keluar dari tampilan transaksi.")
             break

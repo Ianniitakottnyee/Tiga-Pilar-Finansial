@@ -2,20 +2,20 @@ templat
 cek - pengelolaan
 waktu - pencatatan
 
-1. Sorting (hutang terbesar ke terkecil)
+1. Sorting (hutang terbesar ke terkecil) 
 2. File Handler (penyimpanan data) ☑️
-3. Searching (pencarian riwayat transaksi)
+3. Searching (pencarian hutang berdasarkan nama) ➖
 4. Rekursif ➖
 5. List ☑️, Tuple, Set, Dictionary ☑️
-6. Stack/Queue (untuk bagian undo dan redo)
+6. Stack/Queue (untuk bagian undo dan redo) 
 7. OOP (graph) ☑️
 8. Single Linked List (hutang)
 9. Double Linked List (nyimpan anggota)
-10. Circular Linked List (nyimpan transaksi)
+10. Circular Linked List (transaksi) ☑️
 
 Penerapan Materi Tambahan:
 1. Tree (main menu)
-2. Graph (relasi hutang) ➖
+2. Graph (relasi hutang) ☑️
 3. Hash table (bisa ini)
 
 ========================================
@@ -40,3 +40,7 @@ class Graph - perhitungan (banyak bangets jiers)
 
 Rabu 3 Juni 2026 (Iun Ian) Ain
 class Node Transaksi - trans
+
+Kamis 4 Juni 2026 (Ain Iun Ian)
+class Node Transaksi - trans (selesai)
+searching linear hutang - perhitungan
