@@ -11,6 +11,18 @@
         {
             "nama": "Angga",
             "id": 3
+        },
+        {
+            "nama": "Chika",
+            "id": 4
+        },
+        {
+            "nama": "Caca",
+            "id": 5
+        },
+        {
+            "nama": "Budi",
+            "id": 6
         }
     ],
     "transaksi": [

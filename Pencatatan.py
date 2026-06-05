@@ -6,12 +6,18 @@ import tampilkan
 import pencatatan
 
 ...
-def Transaksi():
-    print("Pilih Menu:\n1. Pembagian Rata (Pembelian Item Yang Sama)\n2. Pembagian Per-item (Pembelian Item Yang Berbeda)")
+def Transaksi(mode=None):
+    if mode is None:
+        print("Pilih Menu:\n1. Pembagian Rata (Pembelian Item Yang Sama)\n2. Pembagian Per-item (Pembelian Item Yang Berbeda)")
     while True:
-        menu = pencatatan.cek("Menu: ", "Menu Harus Berupa Angka!")
+        if mode is None:
+            menu = pencatatan.cek("Menu: ", "Menu Harus Berupa Angka!")
+        else:
+            menu = mode
         if menu > 2 or menu < 1:
             print("Menu Tidak Tersedia.")
+            if mode is not None:
+                return
         else:
             break
     

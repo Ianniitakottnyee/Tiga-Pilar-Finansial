@@ -94,32 +94,24 @@ class graph:
 
     def pencarianAin(self):
         self.hutang = {k: v for k, v in self.hutang.items() if v}
-        print(self.hutang)
         nama = input("Masukkan nama yang ingin dicari: ").title()
         hutang = list(self.hutang.keys())
-        print(hutang)
         for i in range(len(hutang)):
             if nama == hutang[i]:
-                print(f"{nama} ditemukan dalam data hutang.")
+                no = 0
+                kosong = ""
+                print("+----+--------------------+--------------------+---------------+")
+                print("| No |        Nama        |  Berhutang Kepada  |     Jumlah    |")
+                print("+----+--------------------+--------------------+---------------+")
+                for nama2 in self.hutang[hutang[i]]:
+                    print(f"| {no+1}. | {nama.ljust(18)} | {nama2.ljust(18)} | {str(self.hutang[hutang[i]][nama2]).ljust(13)} |")
+                    no += 1
+                    print("+----+--------------------+--------------------+---------------+")
                 break
         else:
-            print(f"{nama} tidak ditemukan dalam data hutang.")
+            print(f"{nama} Tidak Memiliki Hutang.")
 
 
-
-
-if __name__ == "__main__":
-    v = graph()
-    v.transaksiKeHutang(pengelolaan.akses()[1])
-    v.netHutang()
-    v.pencarianAin()
-
-
-def linearSearch(arr, targetVal):
-  for i in range(len(arr)):
-    if arr[i] == targetVal:
-      return i
-  return -1
 
 ...
 def pembagianRata(peserta, pembayar, waktu, deskripsi):

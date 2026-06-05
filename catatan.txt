@@ -4,7 +4,7 @@ waktu - pencatatan
 
 1. Sorting (hutang terbesar ke terkecil) 
 2. File Handler (penyimpanan data) ☑️
-3. Searching (pencarian hutang berdasarkan nama) ➖
+3. Searching (pencarian hutang berdasarkan nama) ☑️
 4. Rekursif ➖
 5. List ☑️, Tuple, Set, Dictionary ☑️
 6. Stack/Queue (untuk bagian undo dan redo) 
@@ -14,7 +14,7 @@ waktu - pencatatan
 10. Circular Linked List (transaksi) ☑️
 
 Penerapan Materi Tambahan:
-1. Tree (main menu)
+1. Tree (main menu) ➖
 2. Graph (relasi hutang) ☑️
 3. Hash table (bisa ini)
 
@@ -44,3 +44,7 @@ class Node Transaksi - trans
 Kamis 4 Juni 2026 (Ain Iun Ian)
 class Node Transaksi - trans (selesai)
 searching linear hutang - perhitungan
+
+Jum'at 5 Juni 2026 (Iun Ian) Ain
+searching linear hutang - perhitungan (done)
+tree menu - main
