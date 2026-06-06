@@ -109,4 +109,5 @@ def tampilkanTransaksi(kelapa):
             input("Tekan Enter untuk lanjut...")
 
 
-tampilkanTransaksi(ambilAngga())
+if __name__ == "__main__":
+    tampilkanTransaksi(ambilAngga())

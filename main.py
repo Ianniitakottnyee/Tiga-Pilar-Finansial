@@ -5,6 +5,7 @@ import perhitungan
 import tampilkan
 import time
 import pengelolaan
+import trans
 suasana = time.localtime()
 
 def sambutan():
@@ -53,50 +54,43 @@ class Tree:
     
 
 
-def load_transaksi():
+def memuatTransaksi():
     return pengelolaan.akses()[1]
 
 
-def show_transactions():
-    transaksi = load_transaksi()
+def tampilkanRiwayatTransaksi():
+    transaksi = memuatTransaksi()
     if not transaksi:
         print("Belum ada riwayat transaksi.")
         return
-    tampilkan.History(transaksi)
+    trans.tampilkanTransaksi(trans.ambilAngga())
 
-
-def build_hutang_graph():
+def membuatHutang():
     graf = perhitungan.graph()
-    graf.transaksiKeHutang(load_transaksi())
+    graf.transaksiKeHutang(memuatTransaksi())
     graf.netHutang()
     return graf
 
 
-def show_hutang():
-    graf = build_hutang_graph()
+def tampilkanHyutangs():
+    graf = membuatHutang()
     graf.tampilkanHutang()
 
 
-def search_hutang():
-    graf = build_hutang_graph()
+def cariHutang():
+    graf = membuatHutang()
     graf.pencarianAin()
 
 
-def pembayaran_hutang():
-    graf = build_hutang_graph()
+def pembayaranHutang():
+    graf = membuatHutang()
     nama1 = input("Nama yang berhutang: ").title()
     nama2 = input("Nama yang dihutangi: ").title()
     jumlah = pencatatan.cek(pesan="Jumlah pembayaran: ", eror="Input harus berupa angka!")
     graf.pembayaran(nama1, nama2, jumlah)
 
 
-def clear_riwayat_perhitungan():
-    data = pengelolaan.akses()
-    pengelolaan.simpan(anggota=data[0], transaksi=data[1], hutang=data[2], perhitungan=[])
-    print("Riwayat perhitungan dibersihkan.")
-
-
-def exit_program():
+def keluarAplikasi():
     print("=================  Terimakasih!!  =================")
     exit()
 
@@ -110,22 +104,21 @@ def pohon():
     pembagian_rata = Tree("Pembagian Rata", action=lambda: pencatatan.Transaksi(mode=1))
     pembagian_per_item = Tree("Pembagian Per Item", action=lambda: pencatatan.Transaksi(mode=2))
 
-    tampilkan_transaksi = Tree("Tampilkan Transaksi", action=show_transactions)
+    tampilkan_transaksi = Tree("Tampilkan Transaksi", action=tampilkanRiwayatTransaksi)
 
     hutang = Tree("Hutang")
-    tampilkan_hutang = Tree("Tampilkan Hutang", action=show_hutang)
-    search_hutang = Tree("Search Hutang", action=perhitungan.graph().pencarianAin)
-    pembayaran_hutang = Tree("Pembayaran Hutang", action=perhitungan.graph().pembayaran)
+    tampilkan_hutang = Tree("Tampilkan Hutang", action=tampilkanHyutangs)
+    cariHutang = Tree("Search Hutang", action=perhitungan.graph().pencarianAin)
+    pembayaranHutang = Tree("Pembayaran Hutang", action=perhitungan.graph().pembayaran)
 
     fitur_tambahan = Tree("Fitur Tambahan")
     tampilkan_anggota = Tree("Tampilkan Anggota", action=anggota.Show_Users)
     hapus_anggota = Tree("Hapus Anggota", action=anggota.Delete_User)
     tampilkan_riwayat_perhitungan = Tree("Tampilkan Riwayat Perhitungan", action=tampilkan.History_Perhitungan)
-    bersihkan_riwayat_perhitungan = Tree("Bersihkan Riwayat Perhitungan", action=clear_riwayat_perhitungan)
     backup_data = Tree("Backup Data", action=pengelolaan.upbackup)
     ambil_data_dari_backup = Tree("Ambil Data Dari Backup", action=pengelolaan.openbackup)
 
-    keluar = Tree("Keluar", action=exit_program)
+    keluar = Tree("Keluar", action=keluarAplikasi)
 
     akar.tambahkanTeks(tambah_anggota)
     akar.tambahkanTeks(catatTransaksi)
@@ -137,12 +130,11 @@ def pohon():
     catatTransaksi.tambahkanTeks(pembagian_rata)
     catatTransaksi.tambahkanTeks(pembagian_per_item)
     hutang.tambahkanTeks(tampilkan_hutang)
-    hutang.tambahkanTeks(search_hutang)
-    hutang.tambahkanTeks(pembayaran_hutang)
+    hutang.tambahkanTeks(cariHutang)
+    hutang.tambahkanTeks(pembayaranHutang)
     fitur_tambahan.tambahkanTeks(tampilkan_anggota)
     fitur_tambahan.tambahkanTeks(hapus_anggota)
     fitur_tambahan.tambahkanTeks(tampilkan_riwayat_perhitungan)
-    fitur_tambahan.tambahkanTeks(bersihkan_riwayat_perhitungan)
     fitur_tambahan.tambahkanTeks(backup_data)
     fitur_tambahan.tambahkanTeks(ambil_data_dari_backup)
 
@@ -151,16 +143,16 @@ def pohon():
 
 def inputMenu(menu):
     current = menu
-    parents = []
+    ortuTua = []
     while True:
         os.system('cls' if os.name == 'nt' else 'clear')
         print("===================================================")
         print("================== HITUNG BARENG ==================")
         print("===================================================\n")
 
-        current.tampilkanIan(level=len(parents))
-        if parents:
-            print(" " * (len(parents) * 4) + "[0] Kembali")
+        current.tampilkanIan(level=len(ortuTua))
+        if ortuTua:
+            print(" " * (len(ortuTua) * 4) + "[0] Kembali")
 
         print("\n===================================================")
         print(sambutan() + " " + pencatatan.Timeisit())
@@ -172,8 +164,8 @@ def inputMenu(menu):
             input("Tekan Enter untuk lanjut...")
             continue
 
-        if pilihan == 0 and parents:
-            current = parents.pop()
+        if pilihan == 0 and ortuTua:
+            current = ortuTua.pop()
             continue
 
         try:
@@ -184,7 +176,7 @@ def inputMenu(menu):
             continue
 
         if selected.children:
-            parents.append(current)
+            ortuTua.append(current)
             current = selected
             continue
 
@@ -195,7 +187,7 @@ def inputMenu(menu):
 
         input("Tekan Enter untuk kembali ke menu utama...")
         current = menu
-        parents = []
+        ortuTua = []
 
 
 def tampilkanMenu():
