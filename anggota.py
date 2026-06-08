@@ -31,60 +31,142 @@ def tambahkanAnggata():
     pengelolaan.simpan(anggota= data[0])
     print("Anggota Ditambahkan.")
 
- 
-def Add_Users():
-    user = {}
-    Show_Users()
-
-    p = pengelolaan.akses()
-    users = p[0]
-    if users == []:
-        id = 0
-    else: id = users[-1]["id"]
-    print("Tambahkan Anggota Baru:")
-    print("Tekan (.) jika selesai menambahkan.")
-    i = 1
-    while True:
-        new = input(f"{i}. ")
-        tambah = True
-        if new == ".":
-            break
-        for x in users:
-            if x["nama"] == new.title():
-                print("Anggota sudah ditambahkan")
-                tambah = False
+...
+def editProfil():
+    daftarAngguta()
+    anggita = pengelolaan.akses()[0]
+    if anggita[0] == None:
+        print("Belum ada anggota yang terdaftar!")
+    else:
+        nama = input(f"Pilih User yang ingin diedit berdasarkan Nama: ").title()
+        ditemukan = False
+        for i in range(len(anggita)):
+            if anggita[i]["nama"] == nama:
+                ditemukan = True
                 break
-        if new == "":
-            print("input tidak valid.")
+        if not ditemukan:
+            print(f"User dengan Nama {nama} tidak ditemukan.")
+            editUlang()
         else:
-            if tambah == True:
-                id += 1
-                user = {"nama" : new.title(), "id" : id}
-                users.append(user)
-                i+=1
+            print(nama)
+            try:
+                print(f"ig: {anggita[i]['ig']}")
+            except KeyError:
+                print("ig: -")
+            print(f"id: {anggita[i]['id']}")
+            try:
+                print(f"bio: {anggita[i]['bio']}")
+            except KeyError:
+                print("bio: Beliau terlalu sibuk untuk mengisi bio")
+            
+            pilihan = input("Pilih data yang ingin diedit (ig/bio): ").lower()
+            if pilihan == "ig":
+                ig = input("Masukkan username ig baru: ")
+                anggita[i]["ig"] = ig
+            elif pilihan == "bio":
+                bio = input("Masukkan bio baru: ")
+                anggita[i]["bio"] = bio
+            else:
+                print("Pilihan tidak valid.")
+            print("Profil berhasil diedit!")
+            pengelolaan.simpan(anggota= anggita)
 
-    simpan = {"users": users, "riwayat": p[1], "hutang": p[2], "rh": p[3]}
-    pengelolaan.Save(simpan)
+...
+def editUlang():
+    ulangi = input(f"Tekan tombol apa saja untuk melakukan pengeditan ulang\nKetik '/' untuk keluar menu: ")
+    if ulangi != "/":
+        editProfil()
 
 
-def Show_Users():
-    p = pengelolaan.akses()
-    users = p[0]
+
+def daftarAngguta():
+    orangs = pengelolaan.akses()[0]
     print("+----+--------------+------------------+")
     print(f"|No  |      {"ID".ljust(7)} |       {"Nama".ljust(8)}   | ")
     print("+----+--------------+------------------+")
-    for i in range(len(users)):
-        if users[i]["id"] < 10:
-            print(f"| {str(i+1).ljust(2)} |  00{str(users[i]["id"]).ljust(9)} | {users[i]["nama"].ljust(16)} | ")
-        elif users[i]["id"] < 100:
-            print(f"| {str(i+1).ljust(2)} |  0{str(users[i]["id"]).ljust(10)} | {users[i]["nama"].ljust(16)} | ")
+    for i in range(len(orangs)):
+        if orangs[i]["id"] < 10:
+            print(f"| {str(i+1).ljust(2)} |  00{str(orangs[i]["id"]).ljust(9)} | {orangs[i]["nama"].ljust(16)} | ")
+        elif orangs[i]["id"] < 100:
+            print(f"| {str(i+1).ljust(2)} |  0{str(orangs[i]["id"]).ljust(10)} | {orangs[i]["nama"].ljust(16)} | ")
         else:
-            print(f"| {str(i+1).ljust(2)} |  {str(users[i]["id"]).ljust(11)} | {users[i]["nama"].ljust(16)} | ")
+            print(f"| {str(i+1).ljust(2)} |  {str(orangs[i]["id"]).ljust(11)} | {orangs[i]["nama"].ljust(16)} | ")
     print("+----+--------------+------------------+")
 
 
+
+
+class King():
+    def __init__(self, anggota):
+        self.anggota = anggota
+        self.selanjutnya = None
+        self.sebelumnya = None
+
+
+def ambilAnggeta():
+    data = pengelolaan.akses()[0]
+    if len(data) == 0:
+        return None
+    
+    kelapaKepala = King(data[0])
+    noobSekarang = kelapaKepala
+    
+    for i in range(1, len(data)):
+        proNanti = King(data[i])
+        noobSekarang.selanjutnya = proNanti
+        proNanti.sebelumnya = noobSekarang
+        noobSekarang = noobSekarang.selanjutnya
+
+    return kelapaKepala
+
+def tampilAnggeta(kelapa):
+    if kelapa is None:
+        print("Gaada Urang!")
+        input("Tekan Enter untuk kembali...")
+        return
+
+    nodeSekarang = kelapa
+    while True:
+        import os
+        os.system('cls' if os.name == 'nt' else 'clear')
+        anggota = nodeSekarang.anggota
+        print("==================================")
+        print(anggota.get("napan"))
+        print(f"ig: {anggota.get('ig', '-')}")
+        print(f"id: {anggota.get('id', '-')}")
+        print(f"bio: {anggota.get('bio', '-')}")
+        print("==================================")
+
+        print("\nNavigasi:")
+        print("  [n] Next (Data berikutnya)")
+        print("  [p] Previous (Data sebelumnya)")
+        print("  [q] Quit (Keluar)")
+        user_input = input("\nPilihan (n/p/q): ").lower().strip()
+
+        if user_input == 'n':
+            if nodeSekarang.selanjutnya is None:
+                print("\nAnda sudah di akhir daftar anggota.")
+                input("Tekan Enter untuk lanjut...")
+            else:
+                nodeSekarang = nodeSekarang.selanjutnya
+        elif user_input == 'p':
+            if nodeSekarang.sebelumnya is None:
+                print("\nAnda sudah di awal daftar anggota.")
+                input("Tekan Enter untuk lanjut...")
+            else:
+                nodeSekarang = nodeSekarang.sebelumnya
+        elif user_input == 'q':
+            print("Keluar dari tampilan anggota.")
+            break
+        else:
+            print("Input tidak valid. Silakan gunakan n, p, atau q.")
+            input("Tekan Enter untuk lanjut...")
+
+
+
+
 def Delete_User():
-    Show_Users()
+    daftarAngguta()
     p = pengelolaan.akses()
     users = p[0]
     if users[0] == None:
@@ -99,7 +181,7 @@ def Delete_User():
                     print("Users berhasil dihapus!")
                     simpan = {"users": users, "riwayat": p[1], "hutang": p[2], "rh": p[3]}
                     pengelolaan.Save(simpan)
-                    Show_Users()
+                    daftarAngguta()
                     ditemukan = True
                     break
             if not ditemukan:

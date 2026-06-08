@@ -10,11 +10,11 @@ waktu - pencatatan
 6. Stack/Queue (untuk bagian undo dan redo) 
 7. OOP (graph) ☑️
 8. Single Linked List (hutang)
-9. Double Linked List (nyimpan anggota)
+9. Double Linked List (anggota) ☑️
 10. Circular Linked List (transaksi) ☑️
 
 Penerapan Materi Tambahan:
-1. Tree (main menu) ➖
+1. Tree (main menu) ☑️
 2. Graph (relasi hutang) ☑️
 3. Hash table (bisa ini)
 
@@ -51,3 +51,17 @@ tree menu - main
 
 Sabtu 6 Juni 2026 () Ain Ian Iun
 tree menu sinkronisasi - main
+
+
+Kahijinuy Angguy Iun Kususu
+ig: @khjmnd_
+id: 001
+bio : "when yh"
+
+Senin 8 Juni 2026 (Iun Ian Ain)
+double linked list anggeta - anggota
+edit profil - anggota
+
+
+
+

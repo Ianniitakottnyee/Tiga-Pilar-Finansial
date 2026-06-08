@@ -1,28 +1,22 @@
 {
     "anggota": [
         {
+            "napan": "Nur Hafiza Ain",
             "nama": "Ain",
-            "id": 1
+            "id": 1,
+            "ig": "@nrhfzain"
         },
         {
+            "napan": "Ferdy Apriliansyah",
             "nama": "Ian",
-            "id": 2
+            "id": 2,
+            "ig": "@kk.ianphoenix"
         },
         {
+            "napan": "Kahijina Minda Angga Kusuma",
             "nama": "Angga",
-            "id": 3
-        },
-        {
-            "nama": "Chika",
-            "id": 4
-        },
-        {
-            "nama": "Caca",
-            "id": 5
-        },
-        {
-            "nama": "Budi",
-            "id": 6
+            "id": 3,
+            "ig": "@khjmnd_"
         }
     ],
     "transaksi": [
