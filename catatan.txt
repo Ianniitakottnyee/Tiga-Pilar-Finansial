@@ -2,14 +2,14 @@ templat
 cek - pengelolaan
 waktu - pencatatan
 
-1. Sorting (hutang terbesar ke terkecil) 
+1. Sorting (paling banyak ikiut transaksi countsort)
 2. File Handler (penyimpanan data) ☑️
 3. Searching (pencarian hutang berdasarkan nama) ☑️
 4. Rekursif ➖
-5. List ☑️, Tuple, Set, Dictionary ☑️
-6. Stack/Queue (untuk bagian undo dan redo) 
+5. List ☑️, Tuple (riwayat perhitungan), Set (cek yang ikut transaksi), Dictionary ☑️
+6. Stack/Queue (untuk bagian undo dan redo)
 7. OOP (graph) ☑️
-8. Single Linked List (hutang)
+8. Single Linked List (tampilkan perhitungan) ➖
 9. Double Linked List (anggota) ☑️
 10. Circular Linked List (transaksi) ☑️
 
@@ -62,6 +62,7 @@ Senin 8 Juni 2026 (Iun Ian Ain)
 double linked list anggeta - anggota
 edit profil - anggota
 
-
-
+selasa 9 Juni 2026 () Ian Ain Iun
+single link list - perhitungan
+Transaksi + pembayaran = hutang
 

@@ -2,7 +2,6 @@ import os
 import pencatatan
 import anggota
 import perhitungan
-import tampilkan
 import time
 import pengelolaan
 import trans
@@ -65,6 +64,7 @@ def tampilkanRiwayatTransaksi():
         return
     trans.tampilkanTransaksi(trans.ambilAngga())
 
+
 def membuatHutang():
     graf = perhitungan.graph()
     graf.transaksiKeHutang(memuatTransaksi())
@@ -114,7 +114,7 @@ def pohon():
     fitur_tambahan = Tree("Fitur Tambahan")
     tampilkan_anggota = Tree("Tampilkan Anggota", action=anggota.Show_Users)
     hapus_anggota = Tree("Hapus Anggota", action=anggota.Delete_User)
-    tampilkan_riwayat_perhitungan = Tree("Tampilkan Riwayat Perhitungan", action=tampilkan.History_Perhitungan)
+    tampilkan_riwayat_perhitungan = Tree("Tampilkan Riwayat Perhitungan", action=...)
     backup_data = Tree("Backup Data", action=pengelolaan.upbackup)
     ambil_data_dari_backup = Tree("Ambil Data Dari Backup", action=pengelolaan.openbackup)
 
@@ -196,6 +196,9 @@ def tampilkanMenu():
 
 
 tampilkanMenu()
+
+
+
 """
 menu
     tambah anggota
@@ -204,17 +207,17 @@ menu
         pembagian rata
         pembagian per item
 
-    tampilkan transaksi
+     transaksi
     
     hutang
-        tampilkan hutang  
+         hutang  
         search
         pembayaran
 
     fitur tambahan
-        tampilkan anggota
+         anggota
         hapus anggota
-        tampilkan riwayat perhitungan
+         riwayat perhitungan
         bersihkan riwayat perhitungan
         backup data
         ambil data dari backup
@@ -256,7 +259,7 @@ def main():
                     if p[1] == []:
                         print("Belum ada riwayat transaksi.")
                     else:
-                        tampilkan.History(p[1])
+                        .History(p[1])
                 except KeyError: print("Belum ada riwayat transaksi.")
                 break
             elif r == 2:
@@ -264,7 +267,7 @@ def main():
                     if p[2] == []:
                         print("Riwayat hutang kosong.")
                     else:
-                        tampilkan.History_Hutang(p[2])
+                        .History_Hutang(p[2])
                         print("[1] Rapikan\n[2] Simplikasi\n[3] Keluar")
                         simp = pencatatan.cek(pesan="menu: ", eror="Input hanya berbentuk angka!")
                         if simp == 1:
@@ -292,7 +295,7 @@ def main():
         elif pilih == 2:
             anggota.Delete_User()
         elif pilih == 3:
-            tampilkan.History_Perhitungan()
+            .History_Perhitungan()
         elif pilih == 4:
             pengelolaan.clearrh()
         elif pilih == 5:

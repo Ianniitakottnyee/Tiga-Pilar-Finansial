@@ -28,7 +28,7 @@
             ],
             "pembayar": "Angga",
             "item": "Pagi sore",
-            "harga": 1000000,
+            "harga": 14000,
             "waktu": " 31 Mei 2026 jam 16:32:00",
             "deskripsi": "Traktiran ultah tahun",
             "kode": "r"
@@ -53,7 +53,7 @@
                 {
                     "Angga": [
                         {
-                            "Riau": 10000000
+                            "Riau": 27000
                         }
                     ]
                 }
@@ -64,6 +64,72 @@
             "kode": "p"
         }
     ],
-    "hutang": [],
-    "perhitungan": []
+    "pembayaran": [
+        {
+            "awal": 14000,
+            "nama": "Ian",
+            "ke": "Angga",
+            "jumlah": 7000,
+            "waktu": " 9 Juni 2026 jam 22:28:51",
+            "akhir": 7000
+        },
+        {
+            "awal": 13000,
+            "nama": "Angga",
+            "ke": "Ain",
+            "jumlah": 5000,
+            "waktu": " 9 Juni 2026 jam 22:38:44",
+            "akhir": 8000
+        },
+        {
+            "awal": 13000,
+            "nama": "Ian",
+            "ke": "Ain",
+            "jumlah": 12000,
+            "waktu": " 9 Juni 2026 jam 22:40:51",
+            "akhir": 1000
+        },
+        {
+            "awal": 100,
+            "nama": "A",
+            "ke": "B",
+            "jumlah": 20,
+            "waktu": "now",
+            "akhir": 80
+        },
+        {
+            "awal": 80,
+            "nama": "A",
+            "ke": "B",
+            "jumlah": 30,
+            "waktu": "now",
+            "akhir": 50
+        },
+        {
+            "awal": 100,
+            "nama": "A",
+            "ke": "B",
+            "jumlah": 20,
+            "waktu": "now",
+            "akhir": 80
+        },
+        {
+            "awal": 27000,
+            "nama": "Angga",
+            "ke": "Ain",
+            "jumlah": 7000,
+            "waktu": " 9 Juni 2026 jam 23:35:07",
+            "akhir": 20000
+        }
+    ],
+    "perhitungan": [
+        {
+            "tipe": "pembayaran",
+            "nama1": "Angga",
+            "nama2": "Ain",
+            "awal": 27000,
+            "jumlah": 7000,
+            "akhir": 20000
+        }
+    ]
 }

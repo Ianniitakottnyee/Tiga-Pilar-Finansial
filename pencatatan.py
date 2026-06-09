@@ -2,7 +2,6 @@ import anggota
 import time
 import perhitungan
 import pengelolaan
-import tampilkan
 import pencatatan
 
 ...
@@ -40,7 +39,7 @@ def Transaksi(mode=None):
 
     pembayar = pesertaSah("Pembayar: ", "Pembayar Belum Terdaftar, Ingin Menambahkannya Sebagai Anggota?(ya/tidak): ", "Silahkan Input Ulang Pembayar." )
 
-    waktu = Timeisit()
+    waktu = waktuSaatIni()
     deskripsi = input("Tambahkan Deskripsi: ")
 
     if menu == 1:
@@ -85,7 +84,7 @@ def pesertaSah(pesan, eror, ulang):
             return valid
 
 ...
-def Timeisit():
+def waktuSaatIni():
     atimess = time.localtime()
     waktu = {"tahun" : atimess[0], "bulan" : atimess[1], "tanggal": atimess[2], "jam" : atimess[3], "menit": atimess[4], "detik": atimess[5]}
     bulan = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
@@ -164,7 +163,7 @@ def pay():
     p = pengelolaan.akses()
     hutang = p[2]
     rihu = p[3]
-    tampilkan.History_Hutang(hutang)
+    .History_Hutang(hutang)
 
     print("============  Pembayaran  ============")
     payer = None
