@@ -95,7 +95,7 @@ def pohon():
     pembagian_rata = Tree("Pembagian Rata", action=lambda: pencatatan.Transaksi(mode=1))
     pembagian_per_item = Tree("Pembagian Per Item", action=lambda: pencatatan.Transaksi(mode=2))
 
-    tampilkan_transaksi = Tree("Tampilkan Transaksi", action=tampilkanRiwayatTransaksi)
+    tampilkan_transaksi = Tree("Tampilkan Transaksi", action=trans.tampilkanTransaksi(trans.ambilAngga()))
 
     hutang = Tree("Hutang")
     tampilkan_hutang = Tree("Tampilkan Hutang", action=tampilkanHyutangs)
