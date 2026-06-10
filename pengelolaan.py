@@ -24,13 +24,9 @@ def akses():
     try:
         pembayaran = data["pembayaran"]
     except KeyError: pembayaran = []
-    try:
-        perhitungan = data["perhitungan"]
-    except KeyError:
-        perhitungan = []
-    return [anggota, transaksi, pembayaran, perhitungan]
+    return [anggota, transaksi, pembayaran]
 
-def simpan(anggota= None, transaksi= None, pembayaran= None, perhitungan= None):
+def simpan(anggota= None, transaksi= None, pembayaran= None):
     data = akses()
     if anggota is None:
         anggota = data[0]
@@ -38,13 +34,7 @@ def simpan(anggota= None, transaksi= None, pembayaran= None, perhitungan= None):
         transaksi = data[1]
     if pembayaran is None:
         pembayaran = data[2]
-    if perhitungan is None:
-        # data[3] may not exist in older files
-        try:
-            perhitungan = data[3]
-        except Exception:
-            perhitungan = []
-    simpan = {"anggota": anggota, "transaksi": transaksi, "pembayaran": pembayaran, "perhitungan": perhitungan}
+    simpan = {"anggota": anggota, "transaksi": transaksi, "pembayaran": pembayaran}
     unggah(simpan)
 
 

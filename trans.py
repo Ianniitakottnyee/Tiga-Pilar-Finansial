@@ -11,6 +11,7 @@ class Node():
 def ambilAngga():
     data = pengelolaan.akses()[1]
     if len(data) == 0:
+        print("Belum ada riwayat transaksi.")
         return None
     
     kelapaKepala = Node(data[0])

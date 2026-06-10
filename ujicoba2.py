@@ -1,3 +1,4 @@
-import main
+import anggota
 
-main.carihutang()
+x = anggota.ambilAnggita()
+anggota.daftarAngguta(x)

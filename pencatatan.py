@@ -89,13 +89,10 @@ def waktuSaatIni():
     waktu = {"tahun" : atimess[0], "bulan" : atimess[1], "tanggal": atimess[2], "jam" : atimess[3], "menit": atimess[4], "detik": atimess[5]}
     bulan = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
     bulan_ = ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"]
-    marah = ""
-    merah = ""
     er = "error"
     for i in range(12):
         if waktu["bulan"] == bulan[i]:
             moon = bulan_[i]
-            marah = (f"{waktu["tanggal"]} {bulan_[i]} {waktu["tahun"]}")
             break
     if waktu["jam"]<10:
         if waktu["menit"]<10:

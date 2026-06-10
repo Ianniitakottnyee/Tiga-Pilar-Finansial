@@ -7,6 +7,7 @@ import pengelolaan
 import trans
 suasana = time.localtime()
 
+...
 def sambutan():
     try:
         pengelolaan.buka()
@@ -22,14 +23,15 @@ def sambutan():
         return "Selamat siang!"
     else:
         return "Selamat sore!"
-    
+
+...
 class Tree:
     def __init__(self, menu, action=None):
         self.menu = menu
         self.action = action
         self.children = []
 
-    def tambahkanTeks(self, child):
+    def tambahkanAnak(self, child):
         self.children.append(child)
 
     def tampilkanIan(self, level=0):
@@ -37,7 +39,7 @@ class Tree:
         for index, child in enumerate(self.children, start=1):
             print(" " * (level * 4) + f"[{index}] {child.menu}")
 
-    def pilihChild(self, nomor):
+    def pilihAnak(self, nomor):
         if nomor < 1 or nomor > len(self.children):
             raise IndexError("Menu tidak valid.")
         return self.children[nomor - 1]
@@ -50,37 +52,26 @@ class Tree:
             if found:
                 return found
         return None
-    
 
 
-def memuatTransaksi():
-    return pengelolaan.akses()[1]
 
-
-def tampilkanRiwayatTransaksi():
-    transaksi = memuatTransaksi()
-    if not transaksi:
-        print("Belum ada riwayat transaksi.")
-        return
-    trans.tampilkanTransaksi(trans.ambilAngga())
+    #trans.tampilkanTransaksi(trans.ambilAngga())
 
 
 def membuatHutang():
     graf = perhitungan.graph()
-    graf.transaksiKeHutang(memuatTransaksi())
+    graf.transaksiKeHutang(pengelolaan.akses()[1])
+    graf.pembayaranKeHutang(pengelolaan.akses()[2])
     graf.netHutang()
     return graf
-
 
 def tampilkanHyutangs():
     graf = membuatHutang()
     graf.tampilkanHutang()
 
-
 def cariHutang():
     graf = membuatHutang()
     graf.pencarianAin()
-
 
 def pembayaranHutang():
     graf = membuatHutang()
@@ -120,23 +111,23 @@ def pohon():
 
     keluar = Tree("Keluar", action=keluarAplikasi)
 
-    akar.tambahkanTeks(tambah_anggota)
-    akar.tambahkanTeks(catatTransaksi)
-    akar.tambahkanTeks(tampilkan_transaksi)
-    akar.tambahkanTeks(hutang)
-    akar.tambahkanTeks(fitur_tambahan)
-    akar.tambahkanTeks(keluar)
+    akar.tambahkanAnak(tambah_anggota)
+    akar.tambahkanAnak(catatTransaksi)
+    akar.tambahkanAnak(tampilkan_transaksi)
+    akar.tambahkanAnak(hutang)
+    akar.tambahkanAnak(fitur_tambahan)
+    akar.tambahkanAnak(keluar)
 
-    catatTransaksi.tambahkanTeks(pembagian_rata)
-    catatTransaksi.tambahkanTeks(pembagian_per_item)
-    hutang.tambahkanTeks(tampilkan_hutang)
-    hutang.tambahkanTeks(cariHutang)
-    hutang.tambahkanTeks(pembayaranHutang)
-    fitur_tambahan.tambahkanTeks(tampilkan_anggota)
-    fitur_tambahan.tambahkanTeks(hapus_anggota)
-    fitur_tambahan.tambahkanTeks(tampilkan_riwayat_perhitungan)
-    fitur_tambahan.tambahkanTeks(backup_data)
-    fitur_tambahan.tambahkanTeks(ambil_data_dari_backup)
+    catatTransaksi.tambahkanAnak(pembagian_rata)
+    catatTransaksi.tambahkanAnak(pembagian_per_item)
+    hutang.tambahkanAnak(tampilkan_hutang)
+    hutang.tambahkanAnak(cariHutang)
+    hutang.tambahkanAnak(pembayaranHutang)
+    fitur_tambahan.tambahkanAnak(tampilkan_anggota)
+    fitur_tambahan.tambahkanAnak(hapus_anggota)
+    fitur_tambahan.tambahkanAnak(tampilkan_riwayat_perhitungan)
+    fitur_tambahan.tambahkanAnak(backup_data)
+    fitur_tambahan.tambahkanAnak(ambil_data_dari_backup)
 
     return akar
 
@@ -169,7 +160,7 @@ def inputMenu(menu):
             continue
 
         try:
-            selected = current.pilihChild(pilihan)
+            selected = current.pilihAnak(pilihan)
         except IndexError:
             print("Menu tidak valid.")
             input("Tekan Enter untuk lanjut...")
@@ -201,23 +192,23 @@ tampilkanMenu()
 
 """
 menu
-    tambah anggota
+    tambah anggota /
 
-    catat transaksi
-        pembagian rata
-        pembagian per item
+    catat transaksi /
+        pembagian rata /
+        pembagian per item /
 
-     transaksi
+     transaksi /
     
-    hutang
-         hutang  
-        search
-        pembayaran
+    hutang /
+        hutang /
+        search /
+        pembayaran /
 
     fitur tambahan
-         anggota
+        tampilkan anggota
         hapus anggota
-         riwayat perhitungan
+        riwayat perhitungan
         bersihkan riwayat perhitungan
         backup data
         ambil data dari backup

@@ -78,31 +78,59 @@ def editUlang():
         editProfil()
 
 
+class Queen():
+    def __init__(self, anggota):
+        self.anggota = anggota
+        self.selanjutnya = None
 
-def daftarAngguta():
-    orangs = pengelolaan.akses()[0]
-    print("+----+--------------+------------------+")
-    print(f"|No  |      {"ID".ljust(7)} |       {"Nama".ljust(8)}   | ")
-    print("+----+--------------+------------------+")
-    for i in range(len(orangs)):
-        if orangs[i]["id"] < 10:
-            print(f"| {str(i+1).ljust(2)} |  00{str(orangs[i]["id"]).ljust(9)} | {orangs[i]["nama"].ljust(16)} | ")
-        elif orangs[i]["id"] < 100:
-            print(f"| {str(i+1).ljust(2)} |  0{str(orangs[i]["id"]).ljust(10)} | {orangs[i]["nama"].ljust(16)} | ")
+def ambilAnggita():
+    data = pengelolaan.akses()[0]
+    if len(data) == 0:
+        return None
+    
+    kelapaKepala = Queen(data[0])
+    noobSekarang = kelapaKepala
+    
+    for i in range(1, len(data)):
+        proNanti = Queen(data[i])
+        noobSekarang.selanjutnya = proNanti
+        noobSekarang = noobSekarang.selanjutnya
+
+    return kelapaKepala
+
+def daftarAngguta(kepala):
+    if kepala is None:
+        print("Belum ada anggota yang terdaftar.")
+
+    sekarang = kepala
+
+
+    nomor = 1
+
+    print("+----+-------------+------------------+")
+    print(f"|No  |      {"ID".ljust(6)} |       {"Nama".ljust(8)}   | ")
+    print("+----+-------------+------------------+")
+    while sekarang is not None:
+        anggota = sekarang.anggota
+        if anggota["id"] < 10:
+            print(f"| {str(nomor).ljust(2)} | 00{str(anggota["id"]).ljust(9)} | {anggota["nama"].ljust(16)} |")
+        elif anggota["id"] < 100:
+            print(f"| {str(nomor).ljust(2)} | 0{str(anggota["id"]).ljust(10)} | {anggota["nama"].ljust(16)} |")
         else:
-            print(f"| {str(i+1).ljust(2)} |  {str(orangs[i]["id"]).ljust(11)} | {orangs[i]["nama"].ljust(16)} | ")
-    print("+----+--------------+------------------+")
+            print(f"| {str(nomor).ljust(2)} | {str(anggota["id"]).ljust(11)} | {anggota["nama"].ljust(16)} |")
+        nomor += 1
+        sekarang = sekarang.selanjutnya
+    print("+----+-------------+------------------+")
 
 
-
-
+...
 class King():
     def __init__(self, anggota):
         self.anggota = anggota
         self.selanjutnya = None
         self.sebelumnya = None
 
-
+...
 def ambilAnggeta():
     data = pengelolaan.akses()[0]
     if len(data) == 0:
@@ -119,7 +147,8 @@ def ambilAnggeta():
 
     return kelapaKepala
 
-def tampilAnggeta(kelapa):
+...
+def profilAnggeta(kelapa):
     if kelapa is None:
         print("Gaada Urang!")
         input("Tekan Enter untuk kembali...")

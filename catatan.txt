@@ -66,3 +66,14 @@ selasa 9 Juni 2026 () Ian Ain Iun
 single link list - perhitungan
 Transaksi + pembayaran = hutang
 
+
+hutang = transaksi + pembayaran
+
+transaksi > graphT
+pembayaran > graphP
+
+hutang = graphP + graphT
+
+hutang = graphPT
+
+net ----- perhitungan
