@@ -172,6 +172,59 @@ class graph:
         for x in self.perhitungan:
             print(f"[Simplikasi] {x["nama1"]}: {x["hutang1"]} <--> {x["nama2"]}: {x["hutang2"]} | {f"sisa: {x['sisa']}" if x["sisa"] != 0 else "Status: Lunas"}")
     
+    def mengurutkanDevin(self):
+        self.hutang = {k: v for k, v in self.hutang.items() if v}
+        hutang = list(self.hutang.keys())
+        print(hutang)
+        while True:
+            orang = input("Nama: ").title()
+            if orang not in hutang:
+                print(f"{orang} tidak memiliki hutang. Silahkan input ulang.")
+                continue
+            else:
+                break
+
+        while True:
+            berdasarkan = input("Dari terbesar(b) / terkecil(k): ").lower()
+            if berdasarkan == "b" or berdasarkan == "k":
+                break
+            else:
+                print("Pilih berdasarkan pengurutan dari terbesar atau terkecil.")
+                continue
+        
+        if berdasarkan == "b": 
+            def mergeSort(arr):
+                if len(arr) <= 1:
+                    return arr
+
+                mid = len(arr) // 2
+                leftHalf = arr[:mid]
+                rightHalf = arr[mid:]
+
+                sortedLeft = mergeSort(leftHalf)
+                sortedRight = mergeSort(rightHalf)
+
+                return merge(sortedLeft, sortedRight)
+
+            def merge(left, right):
+                result = []
+                i = j = 0
+
+                while i < len(left) and j < len(right):
+                    if left[i] < right[j]:
+                        result.append(left[i])
+                        i += 1
+                    else:
+                        result.append(right[j])
+                        j += 1
+
+                result.extend(left[i:])
+                result.extend(right[j:])
+
+                return result
+        else:
+            ...
+        
 
 """================================================================================================================================================="""
 ...

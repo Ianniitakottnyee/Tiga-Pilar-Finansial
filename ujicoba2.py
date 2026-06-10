@@ -1,4 +1,5 @@
 import anggota
+import pencatatan
 
-x = anggota.ambilAnggita()
-anggota.daftarAngguta(x)
+pencatatan.Transaksi()
+pencatatan.Transaksi()

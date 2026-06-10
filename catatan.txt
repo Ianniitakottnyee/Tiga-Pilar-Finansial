@@ -6,11 +6,11 @@ waktu - pencatatan
 2. File Handler (penyimpanan data) ☑️
 3. Searching (pencarian hutang berdasarkan nama) ☑️
 4. Rekursif ➖
-5. List ☑️, Tuple (riwayat perhitungan), Set (cek yang ikut transaksi), Dictionary ☑️
+5. List ☑️, Tuple (riwayat perhitungan), Set (cek yang ikut transaksi) ☑️, Dictionary ☑️
 6. Stack/Queue (untuk bagian undo dan redo)
 7. OOP (graph) ☑️
-8. Single Linked List (tampilkan perhitungan) ➖
-9. Double Linked List (anggota) ☑️
+8. Single Linked List (tampilkan anggota) ☑️
+9. Double Linked List (profil anggota) ☑️
 10. Circular Linked List (transaksi) ☑️
 
 Penerapan Materi Tambahan:
@@ -77,3 +77,8 @@ hutang = graphP + graphT
 hutang = graphPT
 
 net ----- perhitungan
+
+Rabu & Kamis = Ain Ian Iun
+single linked list - anggota
+set - pencatatan
+sorting - perhitungan

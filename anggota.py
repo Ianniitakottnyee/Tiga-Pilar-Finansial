@@ -103,10 +103,7 @@ def daftarAngguta(kepala):
         print("Belum ada anggota yang terdaftar.")
 
     sekarang = kepala
-
-
     nomor = 1
-
     print("+----+-------------+------------------+")
     print(f"|No  |      {"ID".ljust(6)} |       {"Nama".ljust(8)}   | ")
     print("+----+-------------+------------------+")

@@ -23,7 +23,7 @@ def akses():
     except KeyError: transaksi = []
     try:
         pembayaran = data["pembayaran"]
-    except KeyError: pembayaran = []
+    except KeyError: pembayaran = ()
     return [anggota, transaksi, pembayaran]
 
 def simpan(anggota= None, transaksi= None, pembayaran= None):

@@ -6,47 +6,56 @@ import pencatatan
 
 ...
 def Transaksi(mode=None):
-    if mode is None:
-        print("Pilih Menu:\n1. Pembagian Rata (Pembelian Item Yang Sama)\n2. Pembagian Per-item (Pembelian Item Yang Berbeda)")
-    while True:
+    berhenti = False
+    while berhenti is False:
         if mode is None:
-            menu = pencatatan.cek("Menu: ", "Menu Harus Berupa Angka!")
-        else:
-            menu = mode
-        if menu > 2 or menu < 1:
-            print("Menu Tidak Tersedia.")
-            if mode is not None:
-                return
-        else:
-            break
-    
-    #TO DO Tampilkan anggota
-    anggota.Show_Users()
-
-    peserta = []
-    i = 1
-    print("Masukkan Nama Anggota Yang Ikut Dalam Transaksi. Ketik '/' Jika Sudah Selesai.")
-    while True:
-        ikut = pesertaSah(f"{i}. ", "Anggota Belum Terdaftar, Ingin Menambahkannya Sebagai Anggota?(ya/tidak): ", "Silahkan Input Ulang Anggota.").title()
+            print("Pilih Menu:\n1. Pembagian Rata (Pembelian Item Yang Sama)\n2. Pembagian Per-item (Pembelian Item Yang Berbeda)")
+        while True:
+            if mode is None:
+                menu = pencatatan.cek("Menu: ", "Menu Harus Berupa Angka!")
+            else:
+                menu = mode
+            if menu > 2 or menu < 1:
+                print("Menu Tidak Tersedia.")
+                if mode is not None:
+                    return
+            else:
+                break
         
-        if ikut == "/":
-            break
-        if ikut in peserta:
-            print("Anggota Sudah Ditambahkan")
-        else:
+        anggota.daftarAngguta(anggota.ambilAnggita())
+
+        peserta = []
+        i = 1
+        print("Masukkan Nama Anggota Yang Ikut Dalam Transaksi. Ketik '/' Jika Sudah Selesai.")
+        while True:
+            ikut = input(f"{i}. ").title()
+            if ikut == "/":
+                break
+            for terdaftar in pengelolaan.akses()[0]:
+                if ikut == terdaftar["nama"]:
+                    break
+            else:
+                print("Anggota belum terdaftar. Daftarkan terlebih dahulu!")
+                berhenti = True
+                break
             peserta.append(ikut)
-            i+=1
+            i += 1
 
-    pembayar = pesertaSah("Pembayar: ", "Pembayar Belum Terdaftar, Ingin Menambahkannya Sebagai Anggota?(ya/tidak): ", "Silahkan Input Ulang Pembayar." )
+        if berhenti == True:
+            continue
 
-    waktu = waktuSaatIni()
-    deskripsi = input("Tambahkan Deskripsi: ")
+        peserta = set(peserta)
+        peserta = list(peserta)
+        pembayar = pesertaSah("Pembayar: ", "Pembayar Belum Terdaftar, Ingin Menambahkannya Sebagai Anggota?(ya/tidak): ", "Silahkan Input Ulang Pembayar." )
 
-    if menu == 1:
-        perhitungan.pembagianRata(peserta=peserta, pembayar=pembayar, waktu=waktu, deskripsi=deskripsi)
-    else:
-        perhitungan.pembagianPerItem(peserta=peserta, pembayar=pembayar, waktu=waktu, deskripsi=deskripsi)
-    print("Transaksi Berhasil Dicatat")
+        waktu = waktuSaatIni()
+        deskripsi = input("Tambahkan Deskripsi: ")
+
+        if menu == 1:
+            perhitungan.pembagianRata(peserta=peserta, pembayar=pembayar, waktu=waktu, deskripsi=deskripsi)
+        else:
+            perhitungan.pembagianPerItem(peserta=peserta, pembayar=pembayar, waktu=waktu, deskripsi=deskripsi)
+        print("Transaksi Berhasil Dicatat")
         
 ...
 def cek(pesan, eror):

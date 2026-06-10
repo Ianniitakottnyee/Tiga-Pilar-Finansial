@@ -9,4 +9,6 @@ x.transaksiKeHutang()
 x.pembayaranKeHutang()
 
 x.jaringHutang()
+x.tampilkanHutang()
 x.tampilkanRiwayatPerhitungan()
+x.mengurutkanDevin()
