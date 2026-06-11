@@ -3,7 +3,7 @@ import pengelolaan
 
 #==============================================================================================================================================
 ...
-class graph:
+class graph:                                                                        #Graph [12]
     def __init__(self):
         self.hutang = {}
         self.perhitungan = []
@@ -66,7 +66,7 @@ class graph:
                         self.perhitungan.append({"nama1": nama1, "nama2": nama2, "hutang1": self.hutang[nama1][nama2], "hutang2": self.hutang[nama2][nama1], "sisa": 0})
                         del self.hutang[nama1][nama2]
                         del self.hutang[nama2][nama1]
-        self.hutang = {k: v for k, v in self.hutang.items() if v}
+        self.hutang = {k: v for k, v in self.hutang.items() if v}                   #Dictionary [5]
 #==============================================================================================================================================
     ...
     def pembayaran(self):
@@ -154,14 +154,14 @@ class graph:
     ...   
     def mengurutkanDevin(self, nama):
         hutang = self.hutang[nama]
-        hutang = [[k, v] for k, v in hutang.items()]
+        hutang = [[k, v] for k, v in hutang.items()]                                #List [5]
         return hutang
     ...
     def urutan(self, hutang, nama):
         if not hutang:
             print("Tidak ada riwayat hutang.")
             return
-        terurut = [(i, j) for i, j in hutang]
+        terurut = [(i, j) for i, j in hutang]                                       #Tuple [5]
         print(f"Kumpulan hutang {nama} dari yang terkecil sampai terbesar.")
         print("+----+--------------------+--------------------+---------------+")
         print("| No |        Nama        |    Berhutang ke    |    Jumlah     |")
@@ -173,13 +173,13 @@ class graph:
             print("+----+--------------------+--------------------+---------------+")
             
 ...
-def urutCepet(hutang, awals=0, akhirs=None):
+def urutCepet(hutang, awals=0, akhirs=None):                                        #Quick Sort [1]
     if akhirs is None:
         akhirs = len(hutang) - 1
 
     if awals < akhirs:
         pivotsIdx = perkecil(hutang, awals, akhirs)
-        urutCepet(hutang, awals, pivotsIdx-1)
+        urutCepet(hutang, awals, pivotsIdx-1)                                       #Rekursif [4]
         urutCepet(hutang, pivotsIdx+1, akhirs)
 
     return hutang
@@ -199,7 +199,7 @@ def perkecil(hutang, awals, akhirs):
 def urutBerdasarkanJumlah(graf):
     nama = input("Nama: ").title()
     hutang = list(graf.hutang.keys())
-    for i in range(len(hutang)):
+    for i in range(len(hutang)):                                                    #Linear Search [3]
         if nama == hutang[i]:
             hutang = urutCepet(graf.mengurutkanDevin(nama))
             graf.urutan(hutang, nama)

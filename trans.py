@@ -28,7 +28,7 @@ def ambilAngga():
     
     return kelapaKepala
 ...
-def tampilkanTransaksi(kelapa):
+def tampilkanTransaksi(kelapa):                                                     #CircularLinkedList [10]
     current_node = kelapa
     nomor = 1
     

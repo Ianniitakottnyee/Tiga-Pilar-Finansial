@@ -26,7 +26,7 @@ def sambutan():
         return "Selamat sore!"
 #==============================================================================================================================================
 ...
-class Tree:
+class Tree:                                                                         #Tree [11]
     def __init__(self, menu, action=None):
         self.menu = menu
         self.action = action
@@ -72,7 +72,7 @@ def pohon():
 
     hutang = Tree("Hutang")
     tampilkanHutang = Tree("Tampilkan Hutang", action=lambda: perhitungan.relasi(tmplknHutang=False))
-    cariHutang = Tree("Search Hutang", action=lambda: perhitungan.relasi(pencarian=False))
+    cariHutang = Tree("Cari Hutang", action=lambda: perhitungan.relasi(pencarian=False))
     pembayaranHutang = Tree("Pembayaran Hutang", action=lambda: perhitungan.relasi(pembayaran=False))
     tampilkanPembayaran = Tree("Tampilkan Pembayaran", action=lambda: perhitungan.relasi(tmplknPembayaran=False))
 
@@ -118,7 +118,7 @@ def pohon():
 def inputMenu(menu):
     current = menu
     parent = []
-    undoStak = []
+    undoStak = []                                                                   #Stack [6]
     while True:
         os.system('cls' if os.name == 'nt' else 'clear')
         print("===================================================")

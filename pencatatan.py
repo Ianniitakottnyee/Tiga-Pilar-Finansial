@@ -45,7 +45,7 @@ def Transaksi(mode=None):
         if berhenti == True:
             continue
 
-        peserta = set(peserta)
+        peserta = set(peserta)                                                      #Set [5]
         peserta = list(peserta)
         pembayar = pesertaSah("Pembayar: ", "Pembayar Belum Terdaftar, Ingin Menambahkannya Sebagai Anggota?(ya/tidak): ", "Silahkan Input Ulang Pembayar." )
 

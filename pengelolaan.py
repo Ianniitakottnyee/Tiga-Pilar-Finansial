@@ -2,7 +2,7 @@ import pencatatan
 import json
 
 #==============================================================================================================================================
-def unggah(simpan):
+def unggah(simpan):                                                                 #File Handler [2]
     with open("data.json", "w") as f:
         json.dump(simpan, f, indent= 4)
 

@@ -11,6 +11,7 @@ def tambahkanAnggata():
     print("Tambahkan Anggota Baru: ")
     print("Ketik '/' untuk keluar.")
     no = 1
+    kosong = True
     while True:
         tambah = True
         nama = input(f"{no}. ").title()
@@ -18,7 +19,6 @@ def tambahkanAnggata():
             print("Nama tidak valid")
             continue
         elif nama == "/":
-            anggota = None
             break
         for anggota in data[0]:
             if anggota["nama"] == nama:
@@ -26,12 +26,13 @@ def tambahkanAnggata():
                 tambah = False
                 break
         if tambah == True:
+            kosong = False
             id += 1
             no += 1
             anggota = {"nama": nama, "id": id}
             data[0].append(anggota)
     pengelolaan.simpan(anggota= data[0])
-    if anggota is not None:
+    if kosong is False:
         print("Anggota Ditambahkan.")
     else:
         print("Membatalkan Penambahan Anggota Baru...")
@@ -83,7 +84,7 @@ def editUlang():
         editProfil()
 #==============================================================================================================================================
 ...
-class Queen():
+class Queen():                                                                      #OOP [7]
     def __init__(self, anggota):
         self.anggota = anggota
         self.selanjutnya = None
@@ -103,7 +104,7 @@ def ambilAnggita():
 
     return kelapaKepala
 ...
-def daftarAngguta(kepala):
+def daftarAngguta(kepala):                                                          #SingleLinkedList [8]
     if kepala is None:
         print("Belum ada anggota yang terdaftar.")
 
@@ -148,7 +149,7 @@ def ambilAnggeta():
 
     return kelapaKepala
 ...
-def profilAnggeta(kelapa):
+def profilAnggeta(kelapa):                                                          #DoubleLinkedList [9]
     if kelapa is None:
         print("Gaada Urang!")
         input("Tekan Enter untuk kembali...")
