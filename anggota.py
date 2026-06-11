@@ -1,5 +1,6 @@
 import pengelolaan
 
+#==============================================================================================================================================
 ...
 def tambahkanAnggata():
     data = pengelolaan.akses()
@@ -17,6 +18,7 @@ def tambahkanAnggata():
             print("Nama tidak valid")
             continue
         elif nama == "/":
+            anggota = None
             break
         for anggota in data[0]:
             if anggota["nama"] == nama:
@@ -29,11 +31,14 @@ def tambahkanAnggata():
             anggota = {"nama": nama, "id": id}
             data[0].append(anggota)
     pengelolaan.simpan(anggota= data[0])
-    print("Anggota Ditambahkan.")
+    if anggota is not None:
+        print("Anggota Ditambahkan.")
+    else:
+        print("Membatalkan Penambahan Anggota Baru...")
 
 ...
 def editProfil():
-    daftarAngguta()
+    daftarAngguta(ambilAnggita())
     anggita = pengelolaan.akses()[0]
     if anggita[0] == None:
         print("Belum ada anggota yang terdaftar!")
@@ -76,13 +81,13 @@ def editUlang():
     ulangi = input(f"Tekan tombol apa saja untuk melakukan pengeditan ulang\nKetik '/' untuk keluar menu: ")
     if ulangi != "/":
         editProfil()
-
-
+#==============================================================================================================================================
+...
 class Queen():
     def __init__(self, anggota):
         self.anggota = anggota
         self.selanjutnya = None
-
+...
 def ambilAnggita():
     data = pengelolaan.akses()[0]
     if len(data) == 0:
@@ -97,7 +102,7 @@ def ambilAnggita():
         noobSekarang = noobSekarang.selanjutnya
 
     return kelapaKepala
-
+...
 def daftarAngguta(kepala):
     if kepala is None:
         print("Belum ada anggota yang terdaftar.")
@@ -119,14 +124,13 @@ def daftarAngguta(kepala):
         sekarang = sekarang.selanjutnya
     print("+----+-------------+------------------+")
 
-
+#==============================================================================================================================================
 ...
 class King():
     def __init__(self, anggota):
         self.anggota = anggota
         self.selanjutnya = None
         self.sebelumnya = None
-
 ...
 def ambilAnggeta():
     data = pengelolaan.akses()[0]
@@ -143,7 +147,6 @@ def ambilAnggeta():
         noobSekarang = noobSekarang.selanjutnya
 
     return kelapaKepala
-
 ...
 def profilAnggeta(kelapa):
     if kelapa is None:
@@ -187,36 +190,3 @@ def profilAnggeta(kelapa):
         else:
             print("Input tidak valid. Silakan gunakan n, p, atau q.")
             input("Tekan Enter untuk lanjut...")
-
-
-
-
-def Delete_User():
-    daftarAngguta()
-    p = pengelolaan.akses()
-    users = p[0]
-    if users[0] == None:
-        print("Belum ada anggota yang terdaftar!")
-    else:
-        try:
-            x = int(input(f"Pilih User yang ingin dihapus berdasarkan IDnya: "))
-            ditemukan = False
-            for i in range(len(users)):
-                if users[i]["id"] == x:
-                    users.pop(i)
-                    print("Users berhasil dihapus!")
-                    simpan = {"users": users, "riwayat": p[1], "hutang": p[2], "rh": p[3]}
-                    pengelolaan.Save(simpan)
-                    daftarAngguta()
-                    ditemukan = True
-                    break
-            if not ditemukan:
-                print(f"User dengan ID {x} tidak ditemukan.")
-        except ValueError: print("ID tidak valid"), Repeat_Delete()
-
-
-def Repeat_Delete():
-    ulangi = input(f"Tekan tombol apasaja untuk melakukan penghapusan ulang\nKetik (.) untuk keluar menu")
-    if ulangi != ".":
-        Delete_User()
-

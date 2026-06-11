@@ -1,13 +1,13 @@
 import pengelolaan
 
-
+#==============================================================================================================================================
+...
 class Node():
     def __init__(self, transaksi):
         self.transaksi = transaksi
         self.selanjutnya = None
         self.sebelumnya = None
-
-
+...
 def ambilAngga():
     data = pengelolaan.akses()[1]
     if len(data) == 0:
@@ -27,8 +27,7 @@ def ambilAngga():
     kelapaKepala.sebelumnya = noobSekarang
     
     return kelapaKepala
-
-
+...
 def tampilkanTransaksi(kelapa):
     current_node = kelapa
     nomor = 1
@@ -81,8 +80,6 @@ def tampilkanTransaksi(kelapa):
                 no += 1
                 print(f"+----+--------------------+---------------------+-----------------+-----------------+")
 
-
-
         print("\nNavigasi:")
         print("  [n] Next (Data berikutnya)")
         print("  [p] Previous (Data sebelumnya)")
@@ -108,7 +105,3 @@ def tampilkanTransaksi(kelapa):
         else:
             print("Input tidak valid. Silakan gunakan n, p, atau q.")
             input("Tekan Enter untuk lanjut...")
-
-
-if __name__ == "__main__":
-    tampilkanTransaksi(ambilAngga())

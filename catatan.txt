@@ -2,12 +2,12 @@ templat
 cek - pengelolaan
 waktu - pencatatan
 
-1. Sorting (paling banyak ikiut transaksi countsort)
+1. Sorting (pilih orang, urutkan hutang) ☑️
 2. File Handler (penyimpanan data) ☑️
 3. Searching (pencarian hutang berdasarkan nama) ☑️
-4. Rekursif ➖
-5. List ☑️, Tuple (riwayat perhitungan), Set (cek yang ikut transaksi) ☑️, Dictionary ☑️
-6. Stack/Queue (untuk bagian undo dan redo)
+4. Rekursif ☑️
+5. List ☑️, Tuple (riwayat perhitungan) ☑️, Set (cek yang ikut transaksi) ☑️, Dictionary ☑️
+6. Stack/Queue (untuk bagian undo dan redo) ☑️
 7. OOP (graph) ☑️
 8. Single Linked List (tampilkan anggota) ☑️
 9. Double Linked List (profil anggota) ☑️
@@ -16,7 +16,7 @@ waktu - pencatatan
 Penerapan Materi Tambahan:
 1. Tree (main menu) ☑️
 2. Graph (relasi hutang) ☑️
-3. Hash table (bisa ini)
+3. Hash table (bisa ini) ❌
 
 ========================================
 Hari Tanggal Bulan Tahun (Luring) Daring

@@ -10,13 +10,18 @@
             "napan": "Ferdy Apriliansyah",
             "nama": "Ian",
             "id": 2,
-            "ig": "@kk.ianphoenix"
+            "ig": "@kk.ianphoenix",
+            "bio": "gwa mh me us ours"
         },
         {
             "napan": "Kahijina Minda Angga Kusuma",
             "nama": "Angga",
             "id": 3,
             "ig": "@khjmnd_"
+        },
+        {
+            "nama": "Devin",
+            "id": 4
         }
     ],
     "transaksi": [
@@ -62,6 +67,94 @@
             "waktu": " 31 Mei 2026 jam 16:35:32",
             "deskripsi": "UNRI",
             "kode": "p"
+        },
+        {
+            "peserta": [
+                "Ain",
+                "Devin",
+                "Ian",
+                "Angga"
+            ],
+            "pembayar": "Devin",
+            "item": "aier poetih",
+            "harga": 7000,
+            "waktu": " 12 Juni 2026 jam 03:08:43",
+            "deskripsi": "cuba cuba",
+            "kode": "r"
+        },
+        {
+            "peserta": [
+                {
+                    "Ian": [
+                        {
+                            "strobery": 10000
+                        },
+                        {
+                            "tahu krrispi": 5000
+                        }
+                    ]
+                },
+                {
+                    "Angga": [
+                        {
+                            "teh hijau": 5000
+                        }
+                    ]
+                }
+            ],
+            "pembayar": "Ian",
+            "waktu": " 12 Juni 2026 jam 03:15:37",
+            "deskripsi": "when yh",
+            "kode": "p"
+        },
+        {
+            "peserta": [],
+            "pembayar": "/",
+            "waktu": " 12 Juni 2026 jam 03:16:33",
+            "deskripsi": "/",
+            "kode": "p"
+        },
+        {
+            "peserta": [],
+            "pembayar": ".",
+            "item": "apple",
+            "harga": 10,
+            "waktu": " 12 Juni 2026 jam 03:19:20",
+            "deskripsi": "test",
+            "kode": "r"
+        },
+        {
+            "peserta": [
+                "Ian",
+                "Ain"
+            ],
+            "pembayar": "Ian",
+            "item": "ayams",
+            "harga": 12000,
+            "waktu": " 12 Juni 2026 jam 03:20:54",
+            "deskripsi": "hehe",
+            "kode": "r"
+        },
+        {
+            "peserta": [
+                "Ain",
+                "Ian"
+            ],
+            "pembayar": "Ian",
+            "item": "papanKunci",
+            "harga": 13500.0,
+            "waktu": " 12 Juni 2026 jam 03:22:14",
+            "deskripsi": "wlee",
+            "kode": "r"
+        },
+        {
+            "peserta": [],
+            "pembayar": ".",
+            "item": "y",
+            "harga": 10,
+            "waktu": " 12 Juni 2026 jam 03:22:37",
+            "deskripsi": "x",
+            "kode": "r"
         }
     ],
     "pembayaran": [
@@ -112,6 +205,38 @@
             "jumlah": 9000,
             "waktu": " 10 Juni 2026 jam 20:27:54",
             "akhir": 18000
+        },
+        {
+            "awal": 7000,
+            "nama": "Ian",
+            "ke": "Angga",
+            "jumlah": 9000,
+            "waktu": " 12 Juni 2026 jam 02:57:53",
+            "akhir": -2000
+        },
+        {
+            "awal": 9000,
+            "nama": "Ain",
+            "ke": "Angga",
+            "jumlah": 7000,
+            "waktu": " 12 Juni 2026 jam 03:24:59",
+            "akhir": 2000
+        },
+        {
+            "awal": 24500.0,
+            "nama": "Ain",
+            "ke": "Ian",
+            "jumlah": 7500,
+            "waktu": " 12 Juni 2026 jam 04:53:55",
+            "akhir": 17000.0
+        },
+        {
+            "awal": 17000.0,
+            "nama": "Ain",
+            "ke": "Ian",
+            "jumlah": 2000,
+            "waktu": " 12 Juni 2026 jam 04:58:34",
+            "akhir": 15000.0
         }
     ]
 }

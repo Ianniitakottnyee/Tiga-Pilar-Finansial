@@ -1,17 +1,15 @@
 import pencatatan
 import json
 
-
+#==============================================================================================================================================
 def unggah(simpan):
     with open("data.json", "w") as f:
         json.dump(simpan, f, indent= 4)
-
 
 def buka():
     with open("data.json", "r") as f:
         loaded = json.load(f)
     return loaded
-
 
 def akses():
     data = buka()
@@ -37,7 +35,7 @@ def simpan(anggota= None, transaksi= None, pembayaran= None):
     simpan = {"anggota": anggota, "transaksi": transaksi, "pembayaran": pembayaran}
     unggah(simpan)
 
-
+#==============================================================================================================================================
 def openbackup():
     with open("backup.json", "r") as f:
         loaded = json.load(f)

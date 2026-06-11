@@ -7,6 +7,7 @@ import pengelolaan
 import trans
 suasana = time.localtime()
 
+#==============================================================================================================================================
 ...
 def sambutan():
     try:
@@ -23,7 +24,7 @@ def sambutan():
         return "Selamat siang!"
     else:
         return "Selamat sore!"
-
+#==============================================================================================================================================
 ...
 class Tree:
     def __init__(self, menu, action=None):
@@ -52,111 +53,107 @@ class Tree:
             if found:
                 return found
         return None
-
-
-
-    #trans.tampilkanTransaksi(trans.ambilAngga())
-
-
-def membuatHutang():
-    graf = perhitungan.graph()
-    graf.transaksiKeHutang(pengelolaan.akses()[1])
-    graf.pembayaranKeHutang(pengelolaan.akses()[2])
-    graf.netHutang()
-    return graf
-
-def tampilkanHyutangs():
-    graf = membuatHutang()
-    graf.tampilkanHutang()
-
-def cariHutang():
-    graf = membuatHutang()
-    graf.pencarianAin()
-
-def pembayaranHutang():
-    graf = membuatHutang()
-    nama1 = input("Nama yang berhutang: ").title()
-    nama2 = input("Nama yang dihutangi: ").title()
-    jumlah = pencatatan.cek(pesan="Jumlah pembayaran: ", eror="Input harus berupa angka!")
-    graf.pembayaran(nama1, nama2, jumlah)
-
-
+#==============================================================================================================================================
+...
 def keluarAplikasi():
     print("=================  Terimakasih!!  =================")
     exit()
-
-
+...
 def pohon():
     akar = Tree("Menu Utama")
 
-    tambah_anggota = Tree("Tambah Anggota", action=anggota.tambahkanAnggata)
+    tambahAnggota = Tree("Tambah Anggota", action=anggota.tambahkanAnggata)
 
     catatTransaksi = Tree("Catat Transaksi")
-    pembagian_rata = Tree("Pembagian Rata", action=lambda: pencatatan.Transaksi(mode=1))
-    pembagian_per_item = Tree("Pembagian Per Item", action=lambda: pencatatan.Transaksi(mode=2))
+    pembagianRata = Tree("Pembagian Rata", action=lambda: pencatatan.Transaksi(mode=1))
+    pembagianPerItem = Tree("Pembagian Per Item", action=lambda: pencatatan.Transaksi(mode=2))
 
-    tampilkan_transaksi = Tree("Tampilkan Transaksi", action=trans.tampilkanTransaksi(trans.ambilAngga()))
+    tampilkanTransaksi = Tree("Tampilkan Transaksi", action=lambda: trans.tampilkanTransaksi(trans.ambilAngga()))
 
     hutang = Tree("Hutang")
-    tampilkan_hutang = Tree("Tampilkan Hutang", action=tampilkanHyutangs)
-    cariHutang = Tree("Search Hutang", action=perhitungan.graph().pencarianAin)
-    pembayaranHutang = Tree("Pembayaran Hutang", action=perhitungan.graph().pembayaran)
+    tampilkanHutang = Tree("Tampilkan Hutang", action=lambda: perhitungan.relasi(tmplknHutang=False))
+    cariHutang = Tree("Search Hutang", action=lambda: perhitungan.relasi(pencarian=False))
+    pembayaranHutang = Tree("Pembayaran Hutang", action=lambda: perhitungan.relasi(pembayaran=False))
+    tampilkanPembayaran = Tree("Tampilkan Pembayaran", action=lambda: perhitungan.relasi(tmplknPembayaran=False))
 
-    fitur_tambahan = Tree("Fitur Tambahan")
-    tampilkan_anggota = Tree("Tampilkan Anggota", action=anggota.Show_Users)
-    hapus_anggota = Tree("Hapus Anggota", action=anggota.Delete_User)
-    tampilkan_riwayat_perhitungan = Tree("Tampilkan Riwayat Perhitungan", action=...)
-    backup_data = Tree("Backup Data", action=pengelolaan.upbackup)
-    ambil_data_dari_backup = Tree("Ambil Data Dari Backup", action=pengelolaan.openbackup)
+    fiturTambahan = Tree("Fitur Tambahan")
+    pengaturan = Tree("Pengaturan Anggota")
+    tampilkanAnggota = Tree("Tampilkan Anggota", action=lambda: anggota.daftarAngguta(anggota.ambilAnggita()))
+    editProfil = Tree("Edit Profil Anggota", action=lambda: anggota.editProfil())
+    lihatProfil = Tree("Lihat Profil masing-masing Anggota", action=lambda: anggota.profilAnggeta(anggota.ambilAnggeta()))
+    tampilkanRiwayatPerhitungan = Tree("Tampilkan Riwayat Perhitungan", action=lambda: perhitungan.relasi(tmplkanPerhitungan=False))
+    backupData = Tree("Backup Data", action=pengelolaan.upbackup)
+    ambilDataBackup = Tree("Ambil Data Dari Backup", action=pengelolaan.openbackup)
 
     keluar = Tree("Keluar", action=keluarAplikasi)
 
-    akar.tambahkanAnak(tambah_anggota)
+    akar.tambahkanAnak(tambahAnggota)
     akar.tambahkanAnak(catatTransaksi)
-    akar.tambahkanAnak(tampilkan_transaksi)
+    akar.tambahkanAnak(tampilkanTransaksi)
     akar.tambahkanAnak(hutang)
-    akar.tambahkanAnak(fitur_tambahan)
+    akar.tambahkanAnak(fiturTambahan)
     akar.tambahkanAnak(keluar)
 
-    catatTransaksi.tambahkanAnak(pembagian_rata)
-    catatTransaksi.tambahkanAnak(pembagian_per_item)
-    hutang.tambahkanAnak(tampilkan_hutang)
+    catatTransaksi.tambahkanAnak(pembagianRata)
+    catatTransaksi.tambahkanAnak(pembagianPerItem)
+
+    hutang.tambahkanAnak(tampilkanHutang)
     hutang.tambahkanAnak(cariHutang)
     hutang.tambahkanAnak(pembayaranHutang)
-    fitur_tambahan.tambahkanAnak(tampilkan_anggota)
-    fitur_tambahan.tambahkanAnak(hapus_anggota)
-    fitur_tambahan.tambahkanAnak(tampilkan_riwayat_perhitungan)
-    fitur_tambahan.tambahkanAnak(backup_data)
-    fitur_tambahan.tambahkanAnak(ambil_data_dari_backup)
+    hutang.tambahkanAnak(tampilkanPembayaran)
+
+    fiturTambahan.tambahkanAnak(pengaturan)
+    pengaturan.tambahkanAnak(tampilkanAnggota)
+    pengaturan.tambahkanAnak(editProfil)
+    pengaturan.tambahkanAnak(lihatProfil)
+
+    fiturTambahan.tambahkanAnak(tampilkanRiwayatPerhitungan)
+    fiturTambahan.tambahkanAnak(backupData)
+    fiturTambahan.tambahkanAnak(ambilDataBackup)
 
     return akar
 
-
+#==============================================================================================================================================
+...
 def inputMenu(menu):
     current = menu
-    ortuTua = []
+    parent = []
+    undoStak = []
     while True:
         os.system('cls' if os.name == 'nt' else 'clear')
         print("===================================================")
         print("================== HITUNG BARENG ==================")
         print("===================================================\n")
 
-        current.tampilkanIan(level=len(ortuTua))
-        if ortuTua:
-            print(" " * (len(ortuTua) * 4) + "[0] Kembali")
+        current.tampilkanIan(level=len(parent))
+        if parent:
+            print(" " * (len(parent) * 4) + "[0] Kembali")
 
         print("\n===================================================")
-        print(sambutan() + " " + pencatatan.Timeisit())
+        print(sambutan() + " " + pencatatan.waktuSaatIni())
         print("===================================================")
+        user_input = input("Pilih menu: ").strip()
+        if user_input.lower() in ['/undo', 'undo', '/back', 'back']:
+            if undoStak:
+                current = undoStak.pop()
+                if parent:
+                    parent.pop()
+            else:
+                print("Sudah berada di menu utama.")
+                input("Tekan Enter untuk lanjut...")
+            continue
+
         try:
-            pilihan = int(input("Pilih menu: "))
+            pilihan = int(user_input)
         except ValueError:
-            print("Input harus berupa angka.")
+            print("Input harus berupa angka atau '/undo'.")
             input("Tekan Enter untuk lanjut...")
             continue
 
-        if pilihan == 0 and ortuTua:
-            current = ortuTua.pop()
+        if pilihan == 0 and parent:
+            current = parent.pop()
+            if undoStak:
+                undoStak.pop()
             continue
 
         try:
@@ -167,7 +164,8 @@ def inputMenu(menu):
             continue
 
         if selected.children:
-            ortuTua.append(current)
+            parent.append(current)
+            undoStak.append(current)
             current = selected
             continue
 
@@ -178,8 +176,8 @@ def inputMenu(menu):
 
         input("Tekan Enter untuk kembali ke menu utama...")
         current = menu
-        ortuTua = []
-
+        parent = []
+        undoStak = []
 
 def tampilkanMenu():
     menu = pohon()
@@ -223,7 +221,7 @@ def main():
     print("===================================================")
     print("================== HITUNG BARENG ==================")
     print("===================================================")
-    print(sambutan() + " " + pencatatan.Timeisit())
+    print(sambutan() + " " + pencatatan.waktuSaatIni())
     print("menu:")
     print("     [1] Tambahkan anggota baru.")
     print("     [2] Catat transaksi.")
